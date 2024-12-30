@@ -36,3 +36,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 cypress/videos
+android
+ios
+e2e
