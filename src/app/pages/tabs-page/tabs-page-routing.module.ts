@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
-import { SchedulePage } from '../schedule/schedule';
-
 
 const routes: Routes = [
   {
@@ -10,11 +8,21 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'schedule',
+        path: 'dash',
         children: [
           {
             path: '',
-            component: SchedulePage,
+            loadChildren: () => import('../dash/dash.module').then(m => m.DashModule)
+          }
+        ]
+      },
+      {
+        path: 'trades',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../trades/trades.module').then(m => m.TradesModule)
+            // component: SchedulePage,
           },
           {
             path: 'session/:sessionId',
@@ -40,15 +48,6 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'map',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../map/map.module').then(m => m.MapModule)
-          }
-        ]
-      },
-      {
         path: 'about',
         children: [
           {
@@ -59,7 +58,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/app/tabs/schedule',
+        redirectTo: '/app/tabs/trades',
         pathMatch: 'full'
       }
     ]

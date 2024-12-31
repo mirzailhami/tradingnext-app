@@ -1,49 +1,12 @@
-.speaker-card {
-  display: flex;
+$categories: (
+  tp: #69bb7b,//var(--ion-color-primary),
+  sl: #ac282b
+);
 
-  flex-direction: column;
-}
+@each $track, $value in map-remove($categories) {
+  ion-item[track='#{$track}'] ion-label {
+    padding-left: 10px;
 
-/* Due to the fact the cards are inside of columns the margins don't overlap
- * properly so we want to remove the extra margin between cards
- */
-ion-col:not(:last-of-type) .speaker-card {
-  margin-bottom: 0;
-}
-
-.speaker-card .speaker-item {
-  --min-height: 85px;
-}
-
-.speaker-card .speaker-item h2 {
-  font-size: 18px;
-  font-weight: 500;
-
-  letter-spacing: 0.02em;
-}
-
-.speaker-card .speaker-item p {
-  font-size: 13px;
-
-  letter-spacing: 0.02em;
-}
-
-.speaker-card ion-card-header {
-  padding: 0;
-}
-
-.speaker-card ion-card-content {
-  flex: 1 1 auto;
-
-  padding: 0;
-}
-
-.ios ion-list {
-  margin-bottom: 10px;
-}
-
-.md ion-list {
-  padding: 0;
-
-  border-top: 1px solid var(--ion-color-step-150, #d7d8da);
+    border-left: 2px solid $value;
+  }
 }

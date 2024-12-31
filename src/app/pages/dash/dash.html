@@ -1,0 +1,137 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-segment [(ngModel)]="segment" *ngIf="ios">
+      <ion-segment-button value="summary" content-id="summary">
+        <ion-label>Summary</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="stats" content-id="stats`">
+        <ion-label>Statistics</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-title *ngIf="!ios">Dash</ion-title>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="!ios">
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="summary" content-id="summary">
+        <ion-label>Summary</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="stats" content-id="stats">
+        <ion-label>Statistics</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Dash</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+
+<ion-segment-view>
+  <ion-segment-content id="summary">
+    <div class="ion-margin-top ion-padding-horizontal">
+      <ion-button class="ion-margin-end" size="small" fill="outline">All</ion-button>
+      <ion-button class="ion-margin-end" size="small" fill="outline">30D</ion-button>
+      <ion-button class="ion-margin-end" size="small" fill="outline">3M</ion-button>
+      <ion-button class="ion-margin-end" size="small" fill="outline">6M</ion-button>
+      <ion-button size="small" fill="outline">12M</ion-button>
+    </div>
+    <ion-list>
+      <ion-list-header lines="inset">
+        <ion-label>P/L Stats</ion-label>
+      </ion-list-header>
+      
+      <ion-item>
+        <ion-label>Days</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.daysSinceTradingStarted}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Trades</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.trades}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Win Rate</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.wonTradesPercent}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Profit Factor</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.profitFactor}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Average Win (pips)</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.averageWinPips}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Average Loss (pips)</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.averageLossPips}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Best Trade (pips)</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.bestTradePips}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Worst Trade (pips)</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.worstTradePips}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Standard Deviation</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.standardDeviationProfit}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Expectancy</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.expectancy}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Probability</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.probability}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sharpe Ratio</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.sharpeRatio}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>CAGR</ion-label>
+        <ion-note slot="end">{{(metrics | async)?.cagr}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <div class="ion-display-flex ion-align-items-center">
+            <span class="ion-margin-end">zScore</span>
+            <ion-icon id="click-trigger" name="information-circle-outline"></ion-icon>
+          </div>
+        </ion-label>
+        <ion-popover side="right" size="auto" trigger="click-trigger" triggerAction="click">
+          <ng-template>
+            <ion-content class="ion-padding">The lower the score, the higher the odds are that a company is heading
+              for
+              bankruptcy. An Altman Z-score of lower than 1.8, in particular, indicates that the company is on its way
+              to bankruptcy. Companies with scores above 3 are unlikely to enter bankruptcy. Scores in between 1.8 and
+              3
+              define a gray area.</ion-content>
+          </ng-template>
+        </ion-popover>
+        <ion-note slot="end">{{(metrics | async)?.zScore}}</ion-note>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header lines="inset">
+        <ion-label>Inset</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Item</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Item</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-segment-content>
+  <ion-segment-content id="stats">
+    abc
+  </ion-segment-content>
+</ion-segment-view>
