@@ -24,6 +24,13 @@ jobs:
     - name: Build the project
       run: npm run build
 
+    - name: Ensure gh-pages branch exists
+      run: |
+        git fetch origin
+        git checkout origin/gh-pages || git checkout --orphan gh-pages
+        git reset --hard
+
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
