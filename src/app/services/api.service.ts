@@ -7,6 +7,7 @@ import { map, Observable, of } from "rxjs";
 })
 export class ApiService {
   metrics: any;
+  historyTrades: any;
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +28,19 @@ export class ApiService {
         .pipe(map(res => {
           this.metrics = res.metrics;
           return this.metrics;
+        }, this));
+    }
+  }
+
+  getHistoryTrades(): Observable<any> {
+    if (this.historyTrades) {
+      return of(this.historyTrades);
+    } else {
+      return this.http
+        .get<any>('assets/data/history-trades.json')
+        .pipe(map(res => {
+          this.historyTrades = res.trades;
+          return this.historyTrades;
         }, this));
     }
   }
