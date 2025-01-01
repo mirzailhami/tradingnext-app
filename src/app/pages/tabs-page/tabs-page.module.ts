@@ -8,9 +8,7 @@ import { TabsPageRoutingModule } from './tabs-page-routing.module';
 import { AboutModule } from '../about/about.module';
 import { DashModule } from '../dash/dash.module';
 import { TradesModule } from '../trades/trades.module';
-import { SessionDetailModule } from '../session-detail/session-detail.module';
-import { SpeakerDetailModule } from '../speaker-detail/speaker-detail.module';
-import { SpeakerListModule } from '../speaker-list/speaker-list.module';
+import { HistoryPageModule } from '../history/history.module';
 
 @NgModule({
   imports: [
@@ -19,9 +17,7 @@ import { SpeakerListModule } from '../speaker-list/speaker-list.module';
     IonicModule,
     DashModule,
     TradesModule,
-    SessionDetailModule,
-    SpeakerDetailModule,
-    SpeakerListModule,
+    HistoryPageModule,
     TabsPageRoutingModule
   ],
   declarations: [

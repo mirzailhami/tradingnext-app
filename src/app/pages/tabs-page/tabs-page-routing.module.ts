@@ -24,27 +24,27 @@ const routes: Routes = [
             loadChildren: () => import('../trades/trades.module').then(m => m.TradesModule)
             // component: SchedulePage,
           },
-          {
-            path: 'session/:sessionId',
-            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
-          }
+          // {
+          //   path: 'session/:sessionId',
+          //   loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
+          // }
         ]
       },
       {
-        path: 'speakers',
+        path: 'history',
         children: [
           {
             path: '',
-            loadChildren: () => import('../speaker-list/speaker-list.module').then(m => m.SpeakerListModule)
+            loadChildren: () => import('../history/history.module').then(m => m.HistoryPageModule)
           },
-          {
-            path: 'session/:sessionId',
-            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
-          },
-          {
-            path: 'speaker-details/:speakerId',
-            loadChildren: () => import('../speaker-detail/speaker-detail.module').then(m => m.SpeakerDetailModule)
-          }
+          // {
+          //   path: 'session/:sessionId',
+          //   loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
+          // },
+          // {
+          //   path: 'speaker-details/:speakerId',
+          //   loadChildren: () => import('../speaker-detail/speaker-detail.module').then(m => m.SpeakerDetailModule)
+          // }
         ]
       },
       {

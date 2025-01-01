@@ -1,40 +1,20 @@
 <ion-header translucent="true">
   <ion-toolbar>
-    <ion-buttons *ngIf="!showSearchbar" slot="start">
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-segment *ngIf="ios" [(ngModel)]="segment" (ionChange)="updateSchedule()">
-      <ion-segment-button value="all">
-        Position
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Orders
-      </ion-segment-button>
-    </ion-segment>
-    <ion-title *ngIf="!ios && !showSearchbar">Trades</ion-title>
-    <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText" (ionInput)="updateSchedule()"
-      (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar>
+    <ion-title *ngIf="!ios">Trades</ion-title>
     <ion-buttons slot="end">
-      <ion-button *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
+      <ion-button *ngIf="!ios">
         <ion-icon slot="icon-only" name="search"></ion-icon>
       </ion-button>
-      <ion-button *ngIf="!showSearchbar" (click)="presentFilter()">
+      <ion-button (click)="presentFilter()">
         <span *ngIf="ios">Filter</span>
         <span *ngIf="!ios">
           <ion-icon slot="icon-only" name="options"></ion-icon>
         </span>
       </ion-button>
     </ion-buttons>
-  </ion-toolbar>
-  <ion-toolbar *ngIf="!ios">
-    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-      <ion-segment-button value="all">
-        Positions
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Orders
-      </ion-segment-button>
-    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
@@ -43,12 +23,9 @@
     <ion-toolbar>
       <ion-title size="large">Trades</ion-title>
     </ion-toolbar>
-    <ion-toolbar>
-      <ion-searchbar [(ngModel)]="queryText" (ionInput)="updateSchedule()" placeholder="Search"></ion-searchbar>
-    </ion-toolbar>
   </ion-header>
 
-  <ion-list #scheduleList [hidden]="shownSessions === 0">
+  <!-- <ion-list #scheduleList [hidden]="shownSessions === 0">
     <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
       <ion-item-divider sticky>
         <ion-label>
@@ -60,10 +37,8 @@
         [hidden]="session.hide">
         <ion-item routerLink="/app/tabs/schedule/session/{{session.id}}">
           <ion-label>
-            <!-- <h3>{{session.name}}</h3> -->
             <h3>XAUUSD, SELL</h3>
             <p>2685 &rarr; 2650
-              <!-- {{session.timeStart}} &mdash; {{session.timeEnd}}: {{session.location}} -->
             </p>
           </ion-label>
           <ion-text color="medium" class="ion-text-wrap" slot="end">25 pips</ion-text>
@@ -79,30 +54,69 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-item-group>
-  </ion-list>
+  </ion-list> -->
 
-  <ion-list-header [hidden]="shownSessions > 0">
-    No Sessions Found
-  </ion-list-header>
+
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider sticky>
+        <ion-label>Positions</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-horizontal"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
+      <ion-item-sliding *ngFor="let x of [0,1,2,3]">
+        <ion-item>
+          <ion-label>
+            <h3 class="ion-align-items-center">XAUUSD <span class="ion-margin-start order-type sell">SELL</span></h3>
+            <p>2685 &rarr; 2650</p>
+          </ion-label>
+          <div class="ion-text-wrap ion-text-right" slot="end">
+            <ion-note class="pips" color="rise">+25 pips</ion-note>
+            <small color="medium" class="time">2 hours ago</small>
+          </div>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')"
+            *ngIf="segment === 'favorites'">
+            Remove
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider sticky>
+        <ion-label>Pending Orders</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-horizontal"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
+      <ion-item-sliding *ngFor="let x of [0,1,2,3]" #slidingItem>
+        <ion-item>
+          <ion-label>
+            <h3 class="ion-align-items-center">XAUUSD <span class="ion-margin-start order-type buy">buy limit</span>
+            </h3>
+            <p>0.01 at 2685</p>
+          </ion-label>
+          <ion-text color="medium" class="ion-text-wrap" slot="end">Placed</ion-text>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')"
+            *ngIf="segment === 'favorites'">
+            Remove
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
+  </ion-list>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
     <ion-fab-button id="open-modal">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-    <!-- <ion-fab-list side="top">
-      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
-        <ion-icon name="logo-vimeo"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="instagram" (click)="openSocial('Instagram', fab)">
-        <ion-icon name="logo-instagram"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
-        <ion-icon name="logo-facebook"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list> -->
   </ion-fab>
 
   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">

@@ -1,0 +1,80 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-segment *ngIf="ios" [(ngModel)]="segment" [value]="segment">
+      <ion-segment-button value="trades">
+        Trades
+      </ion-segment-button>
+      <ion-segment-button value="orders">
+        Orders
+      </ion-segment-button>
+      <ion-segment-button value="depo">
+        Withdrawal
+      </ion-segment-button>
+    </ion-segment>
+    <ion-title *ngIf="!ios">History</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!ios">
+        <ion-icon slot="icon-only" name="options"></ion-icon>
+      </ion-button>
+      <ion-button (click)="presentFilter()">
+        <span *ngIf="ios">Filter</span>
+        <span *ngIf="!ios">
+          <ion-icon slot="icon-only" name="calendar"></ion-icon>
+        </span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="!ios">
+    <ion-segment [(ngModel)]="segment" [value]="segment">
+      <ion-segment-button value="trades">
+        Trades
+      </ion-segment-button>
+      <ion-segment-button value="orders">
+        Orders
+      </ion-segment-button>
+      <ion-segment-button value="depo">
+        Withdrawal
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">History</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider sticky>
+        <ion-label>
+          Dec 13, 2024
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item track="sl">
+        <ion-label>
+          <h3 class="ion-align-items-center">XAUUSD <span class="ion-margin-start order-type sell">SELL</span></h3>
+          <p>2685 &rarr; 2650</p>
+        </ion-label>
+        <div class="ion-text-wrap ion-text-right" slot="end">
+          <ion-note class="pips" color="fall">-25 pips</ion-note>
+        </div>
+      </ion-item>
+      <ion-item track="tp">
+        <ion-label>
+          <h3 class="ion-align-items-center">XAUUSD <span class="ion-margin-start order-type buy">BUY</span></h3>
+          <p>2685 &rarr; 2650</p>
+        </ion-label>
+        <div class="ion-text-wrap ion-text-right" slot="end">
+          <ion-note class="pips" color="rise">+25 pips</ion-note>
+        </div>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
