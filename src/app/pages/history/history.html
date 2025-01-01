@@ -16,7 +16,7 @@
     </ion-segment>
     <ion-title *ngIf="!ios">History</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="filterBySymbol()">
+      <ion-button id="filterBySymbol">
         <ion-icon slot="icon-only" name="options"></ion-icon>
       </ion-button>
       <ion-button id="filterByDate">
@@ -69,21 +69,52 @@
           <ion-label>{{x.date}}</ion-label>
           <small slot="end">
             <ion-text slot="end">{{x.trades.length}} trades | </ion-text>
-            <ion-text [color]="x.pips<0 ? 'fall' : 'rise'">{{ (x.pips * 10) | number:'1.2-2' }} pips</ion-text>
+            <ion-text [color]="countPips(x.trades)<0 ? 'fall' : 'rise'">{{ (countPips(x.trades)) | number:'1.2-2' }} pips</ion-text>
           </small>
         </ion-item-divider>
 
-        <ion-item [track]="trade.comment" *ngFor="let trade of x.trades">
+        <ion-item *ngFor="let trade of x.trades" [attr.track]="trade.comment">
           <ion-label>
-            <h3 class="ion-align-items-center">{{trade.symbol}} <span class="ion-margin-start order-type sell" [class.sell]="trade.success === 'lost'" [class.buy]="trade.success === 'won'">{{trade.type}}</span></h3>
-            <p>{{trade.openPrice}} &rarr; {{trade.closePrice}}</p>
+            <h3 class="ion-align-items-center">{{trade.symbol}} <span class="ion-margin-start order-type"
+                [class.sell]="trade.type === 'sell'" [class.buy]="trade.type === 'buy'">{{trade.type}}</span></h3>
+            <p>{{trade.openPrice}} &xrarr; {{trade.closePrice}}</p>
           </ion-label>
           <div class="ion-text-wrap ion-text-right" slot="end">
-            <ion-note class="pips" [color]="trade.success === 'won' ? 'rise' : 'fall'">{{ (trade.pips * 10) | number:'1.2-2' }} pips</ion-note>
-            <small color="medium" class="time">{{trade.closeTime | date:'HH:mm'}}, {{trade.durationInMinutes}} min</small>
+            <ion-note class="pips" [color]="trade.success === 'won' ? 'rise' : 'fall'">{{ (trade.pips * 10) |
+              number:'1.2-2' }} pips</ion-note>
+            <small color="medium" class="time">{{trade.closeTime | date:'HH:mm'}} &middot; {{trade.durationInMinutes |
+              duration}}</small>
           </div>
         </ion-item>
       </ion-item-group>
     </ion-list>
   </ng-template>
 </ion-content>
+
+<ion-popover trigger="filterBySymbol" [dismissOnSelect]="true">
+  <ng-template>
+    <ion-content>
+      <ion-list>
+        <ion-item button (click)="filterTradeBySymbol()">
+          <ion-label>All Symbols</ion-label>
+          <ion-icon slot="end" name="checkmark" *ngIf="filterBySymbol === 'all'"></ion-icon>
+        </ion-item>
+        <ion-item *ngFor="let x of allSymbols" button [detail]="false" (click)="filterTradeBySymbol(x)">
+          <ion-label>{{x}}</ion-label>
+          <ion-icon slot="end" name="checkmark" *ngIf="filterBySymbol === x"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-popover trigger="filterByDate" [dismissOnSelect]="true">
+  <ng-template>
+    <ion-content>
+      <ion-list>
+        <ion-item button [detail]="false">Today</ion-item>
+        <ion-item button details id="nested-trigger">Date</ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
