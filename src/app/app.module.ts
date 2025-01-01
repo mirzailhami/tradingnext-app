@@ -11,6 +11,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { provideIonicAngular } from '@ionic/angular/standalone';
 
 @NgModule({
   imports: [
@@ -27,7 +28,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   declarations: [AppComponent],
   providers: [
     InAppBrowser,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    // provideIonicAngular({
+    //   useSetInputAPI: true, //  required for input signals on controller based modals.
+    // })
   ],
   bootstrap: [AppComponent]
 })

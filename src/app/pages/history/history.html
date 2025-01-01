@@ -7,9 +7,6 @@
       <ion-segment-button value="trades">
         Trades
       </ion-segment-button>
-      <ion-segment-button value="orders">
-        Orders
-      </ion-segment-button>
       <ion-segment-button value="depo">
         Withdrawal
       </ion-segment-button>
@@ -28,9 +25,6 @@
     <ion-segment [(ngModel)]="segment" [value]="segment">
       <ion-segment-button value="trades">
         Trades
-      </ion-segment-button>
-      <ion-segment-button value="orders">
-        Orders
       </ion-segment-button>
       <ion-segment-button value="depo">
         Withdrawal
@@ -69,7 +63,7 @@
           <ion-label>{{x.date}}</ion-label>
           <small slot="end">
             <ion-text slot="end">{{x.trades.length}} trades | </ion-text>
-            <ion-text [color]="countPips(x.trades)<0 ? 'fall' : 'rise'">{{ (countPips(x.trades)) | number:'1.2-2' }} pips</ion-text>
+            <ion-text [color]="x.pips<0 ? 'fall' : 'rise'">{{ x.pips | number:'1.2-2' }} pips</ion-text>
           </small>
         </ion-item-divider>
 
@@ -95,11 +89,11 @@
   <ng-template>
     <ion-content>
       <ion-list>
-        <ion-item button (click)="filterTradeBySymbol()">
+        <ion-item button (click)="filterBySymbol = 'all'; filterTrade();">
           <ion-label>All Symbols</ion-label>
           <ion-icon slot="end" name="checkmark" *ngIf="filterBySymbol === 'all'"></ion-icon>
         </ion-item>
-        <ion-item *ngFor="let x of allSymbols" button [detail]="false" (click)="filterTradeBySymbol(x)">
+        <ion-item *ngFor="let x of allSymbols" button [detail]="false" (click)="filterBySymbol = x; filterTrade();">
           <ion-label>{{x}}</ion-label>
           <ion-icon slot="end" name="checkmark" *ngIf="filterBySymbol === x"></ion-icon>
         </ion-item>
@@ -112,8 +106,14 @@
   <ng-template>
     <ion-content>
       <ion-list>
-        <ion-item button [detail]="false">Today</ion-item>
-        <ion-item button details id="nested-trigger">Date</ion-item>
+        <ion-item button *ngFor="let x of periods let last = last" (click)="filterByDate = x.id; filterTrade()" [lines]="last ? 'none' : 'inset'">
+          <ion-icon name="calendar" slot="start"></ion-icon>
+          <ion-label>
+            <h3>{{x.name}}</h3>
+            <ion-note>{{x.range}}</ion-note>
+          </ion-label>
+          <ion-icon name="checkmark" slot="end" *ngIf="filterByDate === x.id"></ion-icon>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ng-template>

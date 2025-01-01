@@ -39,3 +39,4 @@ cypress/videos
 android
 ios
 e2e
+angular.json

@@ -9,6 +9,8 @@ export class ApiService {
   metrics: any;
   historyTrades: any;
 
+  SERVER_HOST = 'http://localhost:3000';
+
   constructor(private http: HttpClient) {}
 
   // getMetrics(): Observable<any> {
@@ -18,6 +20,14 @@ export class ApiService {
   //     })
   //   );
   // }
+
+  client(path: string): Observable<any> {
+    return this.http.get(`${this.SERVER_HOST}/client/${path}`).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
 
   getMetrics(): Observable<any> {
     if (this.metrics) {
