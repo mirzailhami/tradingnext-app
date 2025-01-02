@@ -12,6 +12,8 @@ import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { provideIonicAngular } from '@ionic/angular/standalone';
+import { IonIcon } from '@ionic/angular/standalone';
+
 
 @NgModule({
   imports: [
@@ -29,9 +31,9 @@ import { provideIonicAngular } from '@ionic/angular/standalone';
   providers: [
     InAppBrowser,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
-    // provideIonicAngular({
-    //   useSetInputAPI: true, //  required for input signals on controller based modals.
-    // })
+    provideIonicAngular({
+      useSetInputAPI: true, //  required for input signals on controller based modals.
+    })
   ],
   bootstrap: [AppComponent]
 })

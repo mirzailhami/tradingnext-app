@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonAvatar, IonButton, IonContent, IonHeader, IonImg, IonItem, IonLabel, IonList, IonModal, IonSearchbar, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 import { HistoryPage } from './history';
 import { HistoryPageRoutingModule } from './history-routing.module';
 import { DurationPipe } from './duration.pipe';
 import { IonRangeCalendarComponent } from '@googlproxer/ion-range-calendar';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -15,6 +16,6 @@ import { IonRangeCalendarComponent } from '@googlproxer/ion-range-calendar';
     IonRangeCalendarComponent,
     HistoryPageRoutingModule
   ],
-  declarations: [HistoryPage, DurationPipe],
+  declarations: [HistoryPage, DurationPipe]
 })
 export class HistoryPageModule {}

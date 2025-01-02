@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from "@angular/core";
+import { Component, ViewChild, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   AlertController,
@@ -23,13 +23,14 @@ import {
   Validators,
   FormBuilder,
 } from "@angular/forms";
+import { WsService } from "../../services/ws.service";
 
 @Component({
   selector: "page-trades",
   templateUrl: "trades.html",
   styleUrls: ["./trades.scss"],
 })
-export class TradesPage implements OnInit {
+export class TradesPage implements OnInit, OnDestroy {
   @ViewChild(IonModal) modal: IonModal;
 
   // Gets a reference to the list element
@@ -58,10 +59,13 @@ export class TradesPage implements OnInit {
     public routerOutlet: IonRouterOutlet,
     public toastCtrl: ToastController,
     public user: UserData,
-    public config: Config
+    public config: Config,
+    private webSocketService: WsService
   ) {}
 
   ngOnInit() {
+    this.webSocketService.connect();
+
     this.order = this.fb.group({
       actionType: ['', Validators.required],
       symbol: ['', Validators.required],
@@ -75,6 +79,10 @@ export class TradesPage implements OnInit {
     this.updateSchedule();
 
     this.ios = this.config.get("mode") === "ios";
+  }
+
+  ngOnDestroy() {
+    this.webSocketService.disconnect();
   }
 
   updateSchedule() {

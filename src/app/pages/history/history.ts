@@ -1,4 +1,20 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import {
+  IonAvatar,
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonModal,
+  IonSearchbar,
+  IonTitle,
+  IonToolbar,
+  ModalController
+} from '@ionic/angular/standalone';
+
 import {
   CalendarModal,
   CalendarModalOptions,
@@ -12,8 +28,8 @@ import {
   ActionSheetController,
   Config,
   IonRouterOutlet,
-  ModalController,
 } from "@ionic/angular";
+
 import { TradeFilterPage } from "../trade-filter/trade-filter";
 import { ApiService } from "../../services/api.service";
 import { delay, Subscription } from "rxjs";
@@ -45,6 +61,7 @@ interface GroupedTrades {
   selector: "page-history",
   templateUrl: "history.html",
   styleUrls: ["./../trades/trades.scss"],
+  providers: [ModalController]
 })
 export class HistoryPage {
   loading = true; // Initial loading state
@@ -59,23 +76,22 @@ export class HistoryPage {
   private $brokerTime: Subscription;
   periods: any[] = [];
   customPeriodRange: string;
+  brokerTime: any;
 
   constructor(
     private apiService: ApiService,
     private actionSheetCtrl: ActionSheetController,
     public config: Config,
-    public modalCtrl: ModalController,
-    public routerOutlet: IonRouterOutlet
-  ) {}
+    public routerOutlet: IonRouterOutlet,
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
     this.ios = this.config.get("mode") === "ios";
     this.$brokerTime = this.apiService
       .client("server-time")
       .subscribe((res: any) => {
-        this.periods = this.getPeriods(res.brokerTime);
-        console.log(this.periods);
-        this.customPeriodRange = this.periods[this.periods.length - 1].range;
+        this.brokerTime = res.brokerTime;
       });
   }
 
@@ -98,7 +114,9 @@ export class HistoryPage {
         this.groupedTrades = groupedTrades;
         this.trades = groupedTrades;
         this.allSymbols = symbols;
-        this.loading = false; // Set loading to false after fetching trades
+        this.loading = false;
+        this.periods = this.getPeriods(this.brokerTime);
+        this.customPeriodRange = this.periods[this.periods.length - 1].range;
       });
   }
 
@@ -118,14 +136,14 @@ export class HistoryPage {
             trade.type === "DEAL_TYPE_BUY"
               ? "buy"
               : trade.type === "DEAL_TYPE_SELL"
-              ? "sell"
-              : trade.type,
+                ? "sell"
+                : trade.type,
           comment: trade.comment
             ? trade.comment.toLowerCase().includes("tp")
               ? "tp"
               : trade.comment.toLowerCase().includes("sl")
-              ? "sl"
-              : trade.comment
+                ? "sl"
+                : trade.comment
             : trade.comment,
         };
       }) // Map type and comment fields
@@ -174,20 +192,13 @@ export class HistoryPage {
           "M/D/YY"
         )}`,
       },
-      {
-        name: "Last 6 months",
-        id: "last6months",
-        range: `${startOfSixMonths.format("M/D/YY")} - ${today.format(
-          "M/D/YY"
-        )}`,
-      },
-      {
-        name: "Custom period",
-        id: "custom",
-        range: `${startOfSixMonths.format("M/D/YY")} - ${today.format(
-          "M/D/YY"
-        )}`,
-      },
+      // {
+      //   name: "Custom period",
+      //   id: "custom",
+      //   range: `${startOfThreeMonths.format("M/D/YY")} - ${today.format(
+      //     "M/D/YY"
+      //   )}`,
+      // },
     ];
   }
 
@@ -202,14 +213,14 @@ export class HistoryPage {
           );
           return filteredTrades.length > 0
             ? {
-                ...group,
-                date: group.date,
-                pips: filteredTrades.reduce(
-                  (totalPips, trade) => totalPips + trade.pips,
-                  0
-                ),
-                trades: filteredTrades,
-              }
+              ...group,
+              date: group.date,
+              pips: filteredTrades.reduce(
+                (totalPips, trade) => totalPips + trade.pips,
+                0
+              ),
+              trades: filteredTrades,
+            }
             : null;
         })
         .filter((group: null) => group !== null);
@@ -218,7 +229,7 @@ export class HistoryPage {
 
   filterTradeByDate(groupedTrades: GroupedTrades[], id: string) {
     let startDate: Date, endDate: Date;
-    
+
     const period = this.periods.find((p) => p.id === id);
     if (!period) return groupedTrades;
 
@@ -242,7 +253,7 @@ export class HistoryPage {
 
   filterTrade() {
     if (this.filterByDate === 'custom') {
-      this.openCalendar();
+      // this.openCalendar();
     } else {
       let trades = this.filterTradeByDate(this.groupedTrades, this.filterByDate);
       trades = this.filterTradeBySymbol(trades, this.filterBySymbol);
@@ -251,21 +262,39 @@ export class HistoryPage {
   }
 
   async openCalendar() {
+    const customPeriodRange = this.customPeriodRange.split(' - ');
+    const fromDate = new Date(customPeriodRange[0]);
+    const toDate = new Date(customPeriodRange[1]);
+
     const options: CalendarModalOptions = {
-      title: 'Custom period',
-      pickMode: 'range'
+      pickMode: 'multi',
+      title: 'Select Date Range',
+      cssClass: 'calendar',
+      canBackwardsSelected: true,
+      to: this.brokerTime,
+      defaultDateRange: { from: fromDate, to: toDate },
+      doneIcon: true,
+      clearIcon: true,
+      closeIcon: true,
+      defaultScrollTo: fromDate,
+      maxRange: 90,
     };
 
     const myCalendar = await this.modalCtrl.create({
       component: CalendarModal,
-      componentProps: { options }
+      componentProps: { options },
+      initialBreakpoint: 1,
+      breakpoints: [0, 0.25, 0.5, 0.75, 1]
     });
 
     myCalendar.present();
 
     const event = await myCalendar.onDidDismiss();
-    const date: CalendarResult = event.data;
-    console.log(date);
+    const date = event.data;
+    const from: CalendarResult = date.from;
+    const to: CalendarResult = date.to;
+
+    console.log(date, from, to);
   }
 
 }

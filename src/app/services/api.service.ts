@@ -11,7 +11,7 @@ export class ApiService {
 
   SERVER_HOST = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // getMetrics(): Observable<any> {
   //   return this.http.get<any>("http://localhost:3000/stats/metrics").pipe(
@@ -21,12 +21,20 @@ export class ApiService {
   //   );
   // }
 
+  // client(path: string): Observable<any> {
+  //   return this.http.get(`${this.SERVER_HOST}/client/${path}`).pipe(
+  //     map((res: any) => {
+  //       return res;
+  //     })
+  //   );
+  // }
+
   client(path: string): Observable<any> {
-    return this.http.get(`${this.SERVER_HOST}/client/${path}`).pipe(
-      map((res: any) => {
+    return this.http
+      .get<any>('assets/data/server-time.json')
+      .pipe(map(res => {
         return res;
-      })
-    );
+      }, this));
   }
 
   getMetrics(): Observable<any> {

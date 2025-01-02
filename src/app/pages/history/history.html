@@ -57,7 +57,7 @@
 
   <!-- Actual Trades List -->
   <ng-template #tradesList>
-    <ion-list>
+    <ion-list *ngIf="trades.length > 0; else nodata">
       <ion-item-group *ngFor="let x of trades">
         <ion-item-divider sticky>
           <ion-label>{{x.date}}</ion-label>
@@ -70,18 +70,21 @@
         <ion-item *ngFor="let trade of x.trades" [attr.track]="trade.comment">
           <ion-label>
             <h3 class="ion-align-items-center">{{trade.symbol}} <span class="ion-margin-start order-type"
-                [class.sell]="trade.type === 'sell'" [class.buy]="trade.type === 'buy'">{{trade.type}}</span></h3>
+                [class.sell]="trade.type === 'sell'" [class.buy]="trade.type === 'buy'">{{trade.type.toUpperCase()}}</span></h3>
             <p>{{trade.openPrice}} &xrarr; {{trade.closePrice}}</p>
           </ion-label>
           <div class="ion-text-wrap ion-text-right" slot="end">
             <ion-note class="pips" [color]="trade.success === 'won' ? 'rise' : 'fall'">{{ (trade.pips * 10) |
               number:'1.2-2' }} pips</ion-note>
-            <small color="medium" class="time">{{trade.closeTime | date:'HH:mm'}} &middot; {{trade.durationInMinutes |
+            <small color="medium" class="time">{{trade.openTime | date:'HH:mm'}} &middot; {{trade.durationInMinutes |
               duration}}</small>
           </div>
         </ion-item>
       </ion-item-group>
     </ion-list>
+    <ng-template #nodata>
+      No trades
+    </ng-template>
   </ng-template>
 </ion-content>
 
@@ -89,11 +92,11 @@
   <ng-template>
     <ion-content>
       <ion-list>
-        <ion-item button (click)="filterBySymbol = 'all'; filterTrade();">
+        <ion-item button (click)="filterBySymbol = 'all'; filterTrade();" detail="false">
           <ion-label>All Symbols</ion-label>
           <ion-icon slot="end" name="checkmark" *ngIf="filterBySymbol === 'all'"></ion-icon>
         </ion-item>
-        <ion-item *ngFor="let x of allSymbols" button [detail]="false" (click)="filterBySymbol = x; filterTrade();">
+        <ion-item *ngFor="let x of allSymbols; let last = last" button  detail="false" (click)="filterBySymbol = x; filterTrade();" [lines]="last ? 'none' : 'inset'">
           <ion-label>{{x}}</ion-label>
           <ion-icon slot="end" name="checkmark" *ngIf="filterBySymbol === x"></ion-icon>
         </ion-item>
@@ -106,7 +109,7 @@
   <ng-template>
     <ion-content>
       <ion-list>
-        <ion-item button *ngFor="let x of periods let last = last" (click)="filterByDate = x.id; filterTrade()" [lines]="last ? 'none' : 'inset'">
+        <ion-item detail="false" button *ngFor="let x of periods; let last = last" (click)="filterByDate = x.id; filterTrade()" [lines]="last ? 'none' : 'inset'">
           <ion-icon name="calendar" slot="start"></ion-icon>
           <ion-label>
             <h3>{{x.name}}</h3>
@@ -118,3 +121,49 @@
     </ion-content>
   </ng-template>
 </ion-popover>
+
+<!-- <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]">
+  <ng-template>
+    <ion-content>
+      <ion-searchbar placeholder="Search" (click)="modal.setCurrentBreakpoint(0.75)"></ion-searchbar>
+      <ion-list>
+        <ion-item>
+          <ion-avatar slot="start">
+            <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+          </ion-avatar>
+          <ion-label>
+            <h2>Connor Smith</h2>
+            <p>Sales Rep</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
+          </ion-avatar>
+          <ion-label>
+            <h2>Daniel Smith</h2>
+            <p>Product Designer</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
+          </ion-avatar>
+          <ion-label>
+            <h2>Greg Smith</h2>
+            <p>Director of Operations</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+          </ion-avatar>
+          <ion-label>
+            <h2>Zoey Smith</h2>
+            <p>CEO</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal> -->
