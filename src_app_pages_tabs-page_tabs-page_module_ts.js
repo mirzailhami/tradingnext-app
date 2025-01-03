@@ -887,16 +887,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   HistoryPage: () => (/* binding */ HistoryPage)
 /* harmony export */ });
 /* harmony import */ var _home_runner_work_tradingnext_app_tradingnext_app_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
-/* harmony import */ var _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular/standalone */ 17241);
-/* harmony import */ var _googlproxer_ion_range_calendar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @googlproxer/ion-range-calendar */ 70643);
+/* harmony import */ var _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular/standalone */ 17241);
+/* harmony import */ var _googlproxer_ion_range_calendar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @googlproxer/ion-range-calendar */ 70643);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ 39545);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/api.service */ 3366);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 95074);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 37580);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 21507);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 4059);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ 60316);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 21507);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 4059);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ 60316);
 /* harmony import */ var _duration_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./duration.pipe */ 33004);
 
 var _HistoryPage;
@@ -1221,7 +1220,7 @@ class HistoryPage {
   }
   ngOnInit() {
     this.ios = this.config.get("mode") === "ios";
-    this.$brokerTime = this.apiService.client("server-time").subscribe(res => {
+    this.$brokerTime = this.apiService.client('server-time').subscribe(res => {
       this.brokerTime = res.brokerTime;
     });
   }
@@ -1234,7 +1233,9 @@ class HistoryPage {
     this.loading = true;
   }
   ionViewDidEnter() {
-    this.apiService.getHistoryTrades().pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_5__.delay)(50)).subscribe(res => {
+    this.apiService.getHistoryTrades()
+    // .pipe(delay(50))
+    .subscribe(res => {
       const {
         groupedTrades,
         symbols
@@ -1379,7 +1380,7 @@ class HistoryPage {
         maxRange: 90
       };
       const myCalendar = yield _this.modalCtrl.create({
-        component: _googlproxer_ion_range_calendar__WEBPACK_IMPORTED_MODULE_6__.CalendarModal,
+        component: _googlproxer_ion_range_calendar__WEBPACK_IMPORTED_MODULE_5__.CalendarModal,
         componentProps: {
           options
         },
@@ -1397,12 +1398,12 @@ class HistoryPage {
 }
 _HistoryPage = HistoryPage;
 _HistoryPage.ɵfac = function HistoryPage_Factory(t) {
-  return new (t || _HistoryPage)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_services_api_service__WEBPACK_IMPORTED_MODULE_2__.ApiService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ActionSheetController), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_8__.Config), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonRouterOutlet), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_9__.ModalController));
+  return new (t || _HistoryPage)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_services_api_service__WEBPACK_IMPORTED_MODULE_2__.ApiService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ActionSheetController), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.Config), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonRouterOutlet), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_8__.ModalController));
 };
 _HistoryPage.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({
   type: _HistoryPage,
   selectors: [["page-history"]],
-  features: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵProvidersFeature"]([_ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_9__.ModalController])],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵProvidersFeature"]([_ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_8__.ModalController])],
   decls: 24,
   vars: 7,
   consts: [["tradesList", ""], ["nodata", ""], ["translucent", "true"], ["slot", "start"], [3, "ngModel", "value", "ngModelChange", 4, "ngIf"], [4, "ngIf"], ["slot", "end"], ["id", "filterBySymbol"], ["slot", "icon-only", "name", "options"], ["id", "filterByDate"], ["slot", "icon-only", "name", "calendar"], ["fullscreen", "true"], ["collapse", "condense"], ["size", "large"], [4, "ngIf", "ngIfElse"], ["trigger", "filterBySymbol", 3, "dismissOnSelect"], ["trigger", "filterByDate", 3, "dismissOnSelect"], [3, "ngModelChange", "ngModel", "value"], ["value", "trades"], ["value", "depo"], [4, "ngFor", "ngForOf"], [2, "width", "70%", 3, "animated"], [2, "width", "50%", 3, "animated"], ["slot", "end", 1, "ion-text-wrap", "ion-text-right"], [2, "width", "30%", 3, "animated"], ["sticky", ""], [3, "color"], [1, "ion-align-items-center"], [1, "ion-margin-start", "order-type"], [1, "pips", 3, "color"], ["color", "medium", 1, "time"], ["button", "", "detail", "false", 3, "click"], ["slot", "end", "name", "checkmark", 4, "ngIf"], ["button", "", "detail", "false", 3, "lines", "click", 4, "ngFor", "ngForOf"], ["slot", "end", "name", "checkmark"], ["button", "", "detail", "false", 3, "click", "lines"], ["detail", "false", "button", "", 3, "lines", "click", 4, "ngFor", "ngForOf"], ["detail", "false", "button", "", 3, "click", "lines"], ["name", "calendar", "slot", "start"], ["name", "checkmark", "slot", "end", 4, "ngIf"], ["name", "checkmark", "slot", "end"]],
@@ -1448,7 +1449,7 @@ _HistoryPage.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵ
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("dismissOnSelect", true);
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_10__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_10__.NgIf, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonButtons, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonContent, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonHeader, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonIcon, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItem, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItemDivider, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItemGroup, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonLabel, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonList, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonMenuButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonNote, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonSegment, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonSegmentButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonSkeletonText, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonText, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonTitle, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonToolbar, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonPopover, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.SelectValueAccessor, _angular_common__WEBPACK_IMPORTED_MODULE_10__.DecimalPipe, _angular_common__WEBPACK_IMPORTED_MODULE_10__.DatePipe, _duration_pipe__WEBPACK_IMPORTED_MODULE_3__.DurationPipe],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_9__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgIf, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonButtons, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonContent, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonHeader, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonIcon, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonItem, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonItemDivider, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonItemGroup, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonLabel, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonList, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonMenuButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonNote, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonSegment, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonSegmentButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonSkeletonText, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonText, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonTitle, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonToolbar, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonPopover, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.SelectValueAccessor, _angular_common__WEBPACK_IMPORTED_MODULE_9__.DecimalPipe, _angular_common__WEBPACK_IMPORTED_MODULE_9__.DatePipe, _duration_pipe__WEBPACK_IMPORTED_MODULE_3__.DurationPipe],
   styles: ["ion-item[track=tp][_ngcontent-%COMP%]   ion-label[_ngcontent-%COMP%] {\n  padding-left: 10px;\n  border-left: 2px solid var(--ion-color-rise);\n}\n\nion-item[track=sl][_ngcontent-%COMP%]   ion-label[_ngcontent-%COMP%] {\n  padding-left: 10px;\n  border-left: 2px solid var(--ion-color-fall);\n}\n\nion-fab-button[_ngcontent-%COMP%] {\n  --background: var(--ion-color-step-150, #ffffff);\n  --background-hover: var(--ion-color-step-200, #f2f2f2);\n  --background-focused: var(--ion-color-step-250, #d9d9d9);\n  --color: var(--ion-color-primary, #3880ff);\n}\n\n\n\n\n\n\n.ios[_ngcontent-%COMP%]   ion-fab-button[_ngcontent-%COMP%] {\n  --background-activated: var(--ion-color-step-250, #d9d9d9);\n}\n\nion-label[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n  display: flex;\n}\nion-label[_ngcontent-%COMP%]   .order-type[_ngcontent-%COMP%] {\n  font-size: x-small;\n  padding: 2px 6px;\n  border-radius: 3px;\n  margin-left: 10px;\n}\nion-label[_ngcontent-%COMP%]   .buy[_ngcontent-%COMP%] {\n  border: 1px solid var(--ion-color-rise);\n  color: var(--ion-color-rise);\n}\nion-label[_ngcontent-%COMP%]   .sell[_ngcontent-%COMP%] {\n  border: 1px solid var(--ion-color-fall);\n  color: var(--ion-color-fall);\n}\n\n.pips[_ngcontent-%COMP%] {\n  font-size: 1rem;\n  line-height: 24px;\n}\n\n.time[_ngcontent-%COMP%] {\n  display: block;\n  color: var(--ion-color-step-600, var(--ion-text-color-step-400, #666666));\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvcGFnZXMvdHJhZGVzL3RyYWRlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1FO0VBQ0Usa0JBQUE7RUFDQSw0Q0FBQTtBQUxKOztBQUdFO0VBQ0Usa0JBQUE7RUFDQSw0Q0FBQTtBQUFKOztBQUlBO0VBQ0UsZ0RBQUE7RUFDQSxzREFBQTtFQUNBLHdEQUFBO0VBQ0EsMENBQUE7QUFERjs7QUFJQTs7O0VBQUE7QUFJQTtFQUNFLDBEQUFBO0FBREY7O0FBS0U7RUFDRSxhQUFBO0FBRko7QUFLRTtFQUNFLGtCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0FBSEo7QUFNRTtFQUNFLHVDQUFBO0VBQ0EsNEJBQUE7QUFKSjtBQU9FO0VBQ0UsdUNBQUE7RUFDQSw0QkFBQTtBQUxKOztBQVNBO0VBQ0UsZUFBQTtFQUNBLGlCQUFBO0FBTkY7O0FBU0E7RUFDRSxjQUFBO0VBQ0EseUVBQUE7QUFORiIsInNvdXJjZXNDb250ZW50IjpbIiRjYXRlZ29yaWVzOiAoXG4gIHRwOiB2YXIoLS1pb24tY29sb3ItcmlzZSksXG4gIHNsOiB2YXIoLS1pb24tY29sb3ItZmFsbClcbik7XG5cbkBlYWNoICR0cmFjaywgJHZhbHVlIGluIG1hcC1yZW1vdmUoJGNhdGVnb3JpZXMpIHtcbiAgaW9uLWl0ZW1bdHJhY2s9JyN7JHRyYWNrfSddIGlvbi1sYWJlbCB7XG4gICAgcGFkZGluZy1sZWZ0OiAxMHB4O1xuICAgIGJvcmRlci1sZWZ0OiAycHggc29saWQgJHZhbHVlO1xuICB9XG59XG5cbmlvbi1mYWItYnV0dG9uIHtcbiAgLS1iYWNrZ3JvdW5kOiB2YXIoLS1pb24tY29sb3Itc3RlcC0xNTAsICNmZmZmZmYpO1xuICAtLWJhY2tncm91bmQtaG92ZXI6IHZhcigtLWlvbi1jb2xvci1zdGVwLTIwMCwgI2YyZjJmMik7XG4gIC0tYmFja2dyb3VuZC1mb2N1c2VkOiB2YXIoLS1pb24tY29sb3Itc3RlcC0yNTAsICNkOWQ5ZDkpO1xuICAtLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSwgIzM4ODBmZik7XG59XG5cbi8qXG4gKiBNYXRlcmlhbCBEZXNpZ24gdXNlcyB0aGUgcmlwcGxlIGZvciBhY3RpdmF0ZWRcbiAqIHNvIG9ubHkgc3R5bGUgdGhlIGlPUyBhY3RpdmF0ZWQgYmFja2dyb3VuZFxuICovXG4uaW9zIGlvbi1mYWItYnV0dG9uIHtcbiAgLS1iYWNrZ3JvdW5kLWFjdGl2YXRlZDogdmFyKC0taW9uLWNvbG9yLXN0ZXAtMjUwLCAjZDlkOWQ5KTtcbn1cblxuaW9uLWxhYmVsIHtcbiAgaDMge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gIH1cblxuICAub3JkZXItdHlwZSB7XG4gICAgZm9udC1zaXplOiB4LXNtYWxsO1xuICAgIHBhZGRpbmc6IDJweCA2cHg7XG4gICAgYm9yZGVyLXJhZGl1czogM3B4O1xuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xuICB9XG5cbiAgLmJ1eXtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1pb24tY29sb3ItcmlzZSk7XG4gICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1yaXNlKTtcbiAgfVxuXG4gIC5zZWxse1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWlvbi1jb2xvci1mYWxsKTtcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLWZhbGwpO1xuICB9XG59XG5cbi5waXBze1xuICBmb250LXNpemU6IDFyZW07XG4gIGxpbmUtaGVpZ2h0OiAyNHB4O1xufVxuXG4udGltZXtcbiAgZGlzcGxheTogYmxvY2s7XG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3Itc3RlcC02MDAsIHZhcigtLWlvbi10ZXh0LWNvbG9yLXN0ZXAtNDAwLCAjNjY2NjY2KSk7XG59Il0sInNvdXJjZVJvb3QiOiIifQ== */"]
 });
 
@@ -1846,6 +1847,40 @@ _TradeFilterPage.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__
 
 /***/ }),
 
+/***/ 67811:
+/*!*********************************************!*\
+  !*** ./src/app/pages/trades/moment.pipe.ts ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TimeAgoPipe: () => (/* binding */ TimeAgoPipe)
+/* harmony export */ });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ 39545);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 37580);
+var _TimeAgoPipe;
+
+
+class TimeAgoPipe {
+  transform(value, ...args) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__(value).fromNow(); // this line you have to edit
+  }
+}
+_TimeAgoPipe = TimeAgoPipe;
+_TimeAgoPipe.ɵfac = function TimeAgoPipe_Factory(t) {
+  return new (t || _TimeAgoPipe)();
+};
+_TimeAgoPipe.ɵpipe = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefinePipe"]({
+  name: "timeAgo",
+  type: _TimeAgoPipe,
+  pure: true
+});
+
+/***/ }),
+
 /***/ 7527:
 /*!*******************************************************!*\
   !*** ./src/app/pages/trades/trades-routing.module.ts ***!
@@ -1900,14 +1935,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TradesModule: () => (/* binding */ TradesModule)
 /* harmony export */ });
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 60316);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 34456);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 21507);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 60316);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 34456);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 21507);
 /* harmony import */ var _trades__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./trades */ 76102);
 /* harmony import */ var _trade_filter_trade_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../trade-filter/trade-filter */ 66606);
 /* harmony import */ var _trades_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./trades-routing.module */ 7527);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _moment_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./moment.pipe */ 67811);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 37580);
 var _TradesModule;
+
 
 
 
@@ -1920,16 +1957,16 @@ _TradesModule = TradesModule;
 _TradesModule.ɵfac = function TradesModule_Factory(t) {
   return new (t || _TradesModule)();
 };
-_TradesModule.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineNgModule"]({
+_TradesModule.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
   type: _TradesModule
 });
-_TradesModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjector"]({
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.ReactiveFormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule, _trades_routing_module__WEBPACK_IMPORTED_MODULE_2__.TradesRoutingModule]
+_TradesModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.ReactiveFormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicModule, _trades_routing_module__WEBPACK_IMPORTED_MODULE_2__.TradesRoutingModule]
 });
 (function () {
-  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵsetNgModuleScope"](TradesModule, {
-    declarations: [_trades__WEBPACK_IMPORTED_MODULE_0__.TradesPage, _trade_filter_trade_filter__WEBPACK_IMPORTED_MODULE_1__.TradeFilterPage],
-    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.ReactiveFormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule, _trades_routing_module__WEBPACK_IMPORTED_MODULE_2__.TradesRoutingModule]
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵsetNgModuleScope"](TradesModule, {
+    declarations: [_trades__WEBPACK_IMPORTED_MODULE_0__.TradesPage, _trade_filter_trade_filter__WEBPACK_IMPORTED_MODULE_1__.TradeFilterPage, _moment_pipe__WEBPACK_IMPORTED_MODULE_3__.TimeAgoPipe],
+    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.ReactiveFormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicModule, _trades_routing_module__WEBPACK_IMPORTED_MODULE_2__.TradesRoutingModule]
   });
 })();
 
@@ -1947,16 +1984,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   TradesPage: () => (/* binding */ TradesPage)
 /* harmony export */ });
 /* harmony import */ var _home_runner_work_tradingnext_app_tradingnext_app_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 21507);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 21507);
 /* harmony import */ var _trade_filter_trade_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../trade-filter/trade-filter */ 66606);
 /* harmony import */ var _providers_conference_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/conference-data */ 63798);
 /* harmony import */ var _providers_user_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/user-data */ 59333);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 34456);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ 34456);
 /* harmony import */ var _services_ws_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/ws.service */ 64944);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37580);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 4059);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 95072);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ 60316);
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/api.service */ 3366);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 4059);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 95072);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 60316);
+/* harmony import */ var _moment_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./moment.pipe */ 67811);
 
 var _TradesPage;
 
@@ -1974,162 +2013,205 @@ var _TradesPage;
 
 
 
+
+
+
 const _c0 = ["scheduleList"];
-const _c1 = () => [0, 1, 2, 3];
 function TradesPage_ion_title_4_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-title");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, "Trades");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-title");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Trades");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
 }
-function TradesPage_ion_button_6_Template(rf, ctx) {
+function TradesPage_ion_item_group_14_ion_item_sliding_6_ion_item_option_17_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-button");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](1, "ion-icon", 18);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-  }
-}
-function TradesPage_span_8_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, "Filter");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-  }
-}
-function TradesPage_span_9_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](1, "ion-icon", 19);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-  }
-}
-function TradesPage_ion_item_sliding_22_ion_item_option_15_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-item-option", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function TradesPage_ion_item_sliding_22_ion_item_option_15_Template_ion_item_option_click_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r2);
-      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵresetView"](ctx_r2.removeFavorite(ctx_r2.slidingItem, ctx_r2.session, "Remove Favorite"));
+    const _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-item-option", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function TradesPage_ion_item_group_14_ion_item_sliding_6_ion_item_option_17_Template_ion_item_option_click_0_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r2);
+      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](3);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r2.removeFavorite(ctx_r2.slidingItem, ctx_r2.session, "Remove Favorite"));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, " Remove ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Remove ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
 }
-function TradesPage_ion_item_sliding_22_Template(rf, ctx) {
+function TradesPage_ion_item_group_14_ion_item_sliding_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-item-sliding")(1, "ion-item")(2, "ion-label")(3, "h3", 20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](4, "XAUUSD ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "span", 21);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](6, "SELL");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](7, "p");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](8, "2685 \u2192 2650");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "div", 22)(10, "ion-note", 23);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](11, "+25 pips");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](12, "small", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](13, "2 hours ago");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](14, "ion-item-options");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](15, TradesPage_ion_item_sliding_22_ion_item_option_15_Template, 2, 0, "ion-item-option", 25);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-item-sliding")(1, "ion-item")(2, "ion-label")(3, "h3", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "span", 19);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](7, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](9, "div", 20)(10, "ion-note", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](12, "number");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](13, "small", 22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](15, "timeAgo");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](16, "ion-item-options");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](17, TradesPage_ion_item_group_14_ion_item_sliding_6_ion_item_option_17_Template, 2, 0, "ion-item-option", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](15);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r2.segment === "favorites");
+    const x_r4 = ctx.$implicit;
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"]("", x_r4.symbol, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵclassProp"]("sell", x_r4.type === "sell")("buy", x_r4.type === "buy");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](x_r4.type.toUpperCase());
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate2"]("", x_r4.openPrice, " \u2192 ", x_r4.currentPrice, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("color", x_r4.pips > 0 ? "rise" : "fall");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind2"](12, 12, x_r4.profit, "1.2-2"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](15, 15, x_r4.brokerTime));
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx_r2.segment === "favorites");
   }
 }
-function TradesPage_ion_item_sliding_29_ion_item_option_13_Template(rf, ctx) {
+function TradesPage_ion_item_group_14_Template(rf, ctx) {
   if (rf & 1) {
-    const _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-item-option", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function TradesPage_ion_item_sliding_29_ion_item_option_13_Template_ion_item_option_click_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r4);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-      const slidingItem_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵreference"](1);
-      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵresetView"](ctx_r2.removeFavorite(slidingItem_r5, ctx_r2.session, "Remove Favorite"));
-    });
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, " Remove ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-  }
-}
-function TradesPage_ion_item_sliding_29_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-item-sliding", null, 1)(2, "ion-item")(3, "ion-label")(4, "h3", 20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](5, "XAUUSD ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](6, "span", 27);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](7, "buy limit");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](8, "p");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](9, "0.01 at 2685");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](10, "ion-text", 28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](11, "Placed");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](12, "ion-item-options");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](13, TradesPage_ion_item_sliding_29_ion_item_option_13_Template, 2, 0, "ion-item-option", 25);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-item-group")(1, "ion-item-divider", 14)(2, "ion-label");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](3, "Positions");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](4, "ion-button", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](5, "ion-icon", 16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](6, TradesPage_ion_item_group_14_ion_item_sliding_6_Template, 18, 17, "ion-item-sliding", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](13);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r2.segment === "favorites");
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r2.positions);
   }
 }
-function TradesPage_ng_template_35_Template(rf, ctx) {
+function TradesPage_ion_item_group_15_ion_item_sliding_6_ion_item_option_13_Template(rf, ctx) {
   if (rf & 1) {
-    const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-header")(1, "ion-toolbar")(2, "ion-buttons", 3)(3, "ion-button", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function TradesPage_ng_template_35_Template_ion_button_click_3_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r6);
-      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵresetView"](ctx_r2.cancel());
+    const _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-item-option", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function TradesPage_ion_item_group_15_ion_item_sliding_6_ion_item_option_13_Template_ion_item_option_click_0_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r5);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      const slidingItem_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵreference"](1);
+      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r2.removeFavorite(slidingItem_r6, ctx_r2.session, "Remove Favorite"));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](4, "Cancel");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "ion-title");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](6, "Welcome");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](7, "ion-content")(8, "form", 29);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("ngSubmit", function TradesPage_ng_template_35_Template_form_ngSubmit_8_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r6);
-      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵresetView"](ctx_r2.confirm());
-    });
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "ion-list", 30)(10, "ion-select", 31)(11, "ion-select-option", 32);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](12, "XAUUSD");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](13, "ion-select-option", 33);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](14, "EURUSD");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](15, "ion-item")(16, "ion-select", 34)(17, "ion-select-option", 35);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](18, "Buy");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](19, "ion-select-option", 36);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](20, "Sell");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](21, "div", 37)(22, "ion-note");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](23, "Order type is required");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](24, "ion-input", 38)(25, "ion-input", 39)(26, "ion-input", 40)(27, "ion-input", 41)(28, "ion-input", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](29, "div", 43)(30, "ion-button", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](31, "Create Order");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Remove ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+}
+function TradesPage_ion_item_group_15_ion_item_sliding_6_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-item-sliding", null, 1)(2, "ion-item")(3, "ion-label")(4, "h3", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](6, "span", 19);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](10, "ion-text", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](12, "ion-item-options");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](13, TradesPage_ion_item_group_15_ion_item_sliding_6_ion_item_option_13_Template, 2, 0, "ion-item-option", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("formGroup", ctx_r2.order);
+    const x_r7 = ctx.$implicit;
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"]("", x_r7.symbol, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵclassProp"]("sell", x_r7.type.includes("sell"))("buy", x_r7.type.includes("buy"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](x_r7.type.toUpperCase());
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate2"]("", x_r7.volume, " at ", x_r7.openPrice, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](x_r7.state.toUpperCase());
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx_r2.segment === "favorites");
+  }
+}
+function TradesPage_ion_item_group_15_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-item-group")(1, "ion-item-divider", 14)(2, "ion-label");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](3, "Pending Orders");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](4, "ion-button", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](5, "ion-icon", 16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](6, TradesPage_ion_item_group_15_ion_item_sliding_6_Template, 14, 10, "ion-item-sliding", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r2.orders);
+  }
+}
+function TradesPage_ng_template_21_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-header")(1, "ion-toolbar")(2, "ion-buttons", 3)(3, "ion-button", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function TradesPage_ng_template_21_Template_ion_button_click_3_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r8);
+      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r2.cancel());
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](4, "Cancel");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "ion-title");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](6, "Welcome");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](7, "ion-content")(8, "form", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("ngSubmit", function TradesPage_ng_template_21_Template_form_ngSubmit_8_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r8);
+      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r2.confirm());
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](9, "ion-list", 28)(10, "ion-select", 29)(11, "ion-select-option", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](12, "XAUUSD");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](13, "ion-select-option", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](14, "EURUSD");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](15, "ion-item")(16, "ion-select", 32)(17, "ion-select-option", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](18, "Buy");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](19, "ion-select-option", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](20, "Sell");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](21, "div", 35)(22, "ion-note");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](23, "Order type is required");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](24, "ion-input", 36)(25, "ion-input", 37)(26, "ion-input", 38)(27, "ion-input", 39)(28, "ion-input", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](29, "div", 41)(30, "ion-button", 42);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](31, "Create Order");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()()();
+  }
+  if (rf & 2) {
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("formGroup", ctx_r2.order);
   }
 }
 class TradesPage {
-  constructor(fb, alertCtrl, confData, loadingCtrl, modalCtrl, router, routerOutlet, toastCtrl, user, config, webSocketService) {
+  constructor(fb, alertCtrl, confData, loadingCtrl, modalCtrl, router, routerOutlet, toastCtrl, user, config, wsService, apiService) {
     this.fb = fb;
     this.alertCtrl = alertCtrl;
     this.confData = confData;
@@ -2140,7 +2222,8 @@ class TradesPage {
     this.toastCtrl = toastCtrl;
     this.user = user;
     this.config = config;
-    this.webSocketService = webSocketService;
+    this.wsService = wsService;
+    this.apiService = apiService;
     this.dayIndex = 0;
     this.queryText = "";
     this.segment = "all";
@@ -2148,33 +2231,42 @@ class TradesPage {
     this.shownSessions = [];
     this.groups = [];
     this.submitted = false;
+    this.symbols = [];
   }
   ngOnInit() {
-    this.webSocketService.connect();
-    this.order = this.fb.group({
-      actionType: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required],
-      symbol: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required],
-      openPrice: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required],
-      stopLoss: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required],
-      takeProfit: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required],
-      expiration: [''],
-      comment: ['']
+    this.wsService.connect();
+    this.positionsSub = this.wsService.positions$.subscribe(res => {
+      this.positions = res;
+      console.log(res);
     });
-    this.updateSchedule();
+    // this.apiService.client("positions").subscribe((res: any[]) => {
+    //   this.positions = res.map((t) => ({
+    //     ...t,
+    //     type: this.formatOrderString(t.type),
+    //   }));
+    // });
+    this.apiService.client("orders").subscribe(res => {
+      this.orders = res.map(t => ({
+        ...t,
+        type: this.formatOrderString(t.type),
+        state: this.formatOrderString(t.state)
+      }));
+    });
+    this.order = this.fb.group({
+      actionType: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_8__.Validators.required],
+      symbol: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_8__.Validators.required],
+      openPrice: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_8__.Validators.required],
+      stopLoss: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_8__.Validators.required],
+      takeProfit: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_8__.Validators.required],
+      expiration: [""],
+      comment: [""]
+    });
     this.ios = this.config.get("mode") === "ios";
   }
+  ionViewDidEnter() {}
   ngOnDestroy() {
-    this.webSocketService.disconnect();
-  }
-  updateSchedule() {
-    // Close any open sliding items when the schedule updates
-    if (this.scheduleList) {
-      this.scheduleList.closeSlidingItems();
-    }
-    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe(data => {
-      this.shownSessions = data.shownSessions;
-      this.groups = data.groups;
-    });
+    this.positionsSub.unsubscribe();
+    this.wsService.disconnect();
   }
   presentFilter() {
     var _this = this;
@@ -2192,7 +2284,7 @@ class TradesPage {
       } = yield modal.onWillDismiss();
       if (data) {
         _this.excludeTracks = data;
-        _this.updateSchedule();
+        // this.updateSchedule();
       }
     })();
   }
@@ -2239,7 +2331,7 @@ class TradesPage {
           handler: () => {
             // they want to remove this session from their favorites
             _this3.user.removeFavorite(sessionData.name);
-            _this3.updateSchedule();
+            // this.updateSchedule();
             // close the sliding item and hide the option buttons
             slidingItem.close();
           }
@@ -2280,90 +2372,73 @@ class TradesPage {
       console.log(ev.detail);
     }
   }
+  formatOrderString(orderString) {
+    if (!orderString) return "";
+    // Remove "ORDER_" prefix, split by underscores, and capitalize words
+    return orderString.replace(/^ORDER_TYPE_|^ORDER_STATE_|^POSITION_TYPE_/, "") // Remove "ORDER_" prefix
+    .toLowerCase() // Convert to lowercase
+    .split("_") // Split into words
+    .join(" "); // Join words with spaces
+  }
 }
 _TradesPage = TradesPage;
 _TradesPage.ɵfac = function TradesPage_Factory(t) {
-  return new (t || _TradesPage)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_providers_conference_data__WEBPACK_IMPORTED_MODULE_2__.ConferenceData), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_8__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonRouterOutlet), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ToastController), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_providers_user_data__WEBPACK_IMPORTED_MODULE_3__.UserData), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.Config), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_services_ws_service__WEBPACK_IMPORTED_MODULE_4__.WsService));
+  return new (t || _TradesPage)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.AlertController), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_providers_conference_data__WEBPACK_IMPORTED_MODULE_2__.ConferenceData), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.LoadingController), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ModalController), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_10__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonRouterOutlet), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ToastController), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_providers_user_data__WEBPACK_IMPORTED_MODULE_3__.UserData), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_11__.Config), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_services_ws_service__WEBPACK_IMPORTED_MODULE_4__.WsService), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_services_api_service__WEBPACK_IMPORTED_MODULE_5__.ApiService));
 };
-_TradesPage.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({
+_TradesPage.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineComponent"]({
   type: _TradesPage,
   selectors: [["page-trades"]],
   viewQuery: function TradesPage_Query(rf, ctx) {
     if (rf & 1) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵviewQuery"](_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonModal, 5);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵviewQuery"](_c0, 7);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵviewQuery"](_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonModal, 5);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵviewQuery"](_c0, 7);
     }
     if (rf & 2) {
       let _t;
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵloadQuery"]()) && (ctx.modal = _t.first);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵloadQuery"]()) && (ctx.scheduleList = _t.first);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵloadQuery"]()) && (ctx.modal = _t.first);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵloadQuery"]()) && (ctx.scheduleList = _t.first);
     }
   },
-  decls: 36,
-  vars: 8,
-  consts: [["fab", ""], ["slidingItem", ""], ["translucent", "true"], ["slot", "start"], [4, "ngIf"], ["slot", "end"], [3, "click"], ["fullscreen", "true"], ["collapse", "condense"], ["size", "large"], ["sticky", ""], ["slot", "end", "size", "small", "fill", "clear", "color", "medium"], ["slot", "icon-only", "ios", "ellipsis-horizontal", "md", "ellipsis-horizontal"], [4, "ngFor", "ngForOf"], ["slot", "fixed", "vertical", "bottom", "horizontal", "end"], ["id", "open-modal"], ["name", "add"], ["trigger", "open-modal", 3, "willDismiss"], ["slot", "icon-only", "name", "search"], ["slot", "icon-only", "name", "options"], [1, "ion-align-items-center"], [1, "ion-margin-start", "order-type", "sell"], ["slot", "end", 1, "ion-text-wrap", "ion-text-right"], ["color", "rise", 1, "pips"], ["color", "medium", 1, "time"], ["color", "danger", 3, "click", 4, "ngIf"], ["color", "danger", 3, "click"], [1, "ion-margin-start", "order-type", "buy"], ["color", "medium", "slot", "end", 1, "ion-text-wrap"], ["novalidate", "", 3, "ngSubmit", "formGroup"], [1, "ion-margin-start"], ["error-text", "Symbol is required", "formControlName", "symbol", "name", "symbol", "aria-label", "Pair", "interface", "action-sheet", "label", "Select Pair", "justify", "space-between"], ["value", "xauusd"], ["value", "eurusd"], ["error-text", "Order type is required", "formControlName", "actionType", "name", "actionType", "errorText", "Order is required", "aria-label", "Pending Order", "interface", "popover", "label", "Select Order", "justify", "space-between", "label-placement", "floating", "required", ""], ["value", "buy"], ["value", "sell"], [1, "error-text"], ["error-text", "Pair is required", "label", "Price", "labelPlacement", "floating", "type", "number", "formControlName", "openPrice", "required", ""], ["error-text", "Stop Loss is required", "label", "Stop Loss", "labelPlacement", "floating", "type", "number", "formControlName", "stopLoss", "required", ""], ["error-text", "Take Profit is required", "label", "Take Profit", "labelPlacement", "floating", "type", "number", "formControlName", "takeProfit", "required", ""], ["label", "Expired After", "labelPlacement", "floating", "type", "number", "formControlName", "expiration", "helperText", "*) Batas waktu maks 48 jam. Khusus Jumat maks 96 jam."], ["label", "Notes", "labelPlacement", "floating", "type", "text", "formControlName", "comment", "placeholder", "Maks. 48 chars (optional)", "helperText", "*) TradingView link for setup/mapping (only you can see this)"], [1, "ion-padding"], ["type", "submit", "expand", "block", "fill", "solid"]],
+  decls: 22,
+  vars: 3,
+  consts: [["fab", ""], ["slidingItem", ""], ["translucent", "true"], ["slot", "start"], [4, "ngIf"], ["slot", "end"], ["slot", "icon-only", "name", "options"], ["fullscreen", "true"], ["collapse", "condense"], ["size", "large"], ["slot", "fixed", "vertical", "bottom", "horizontal", "end"], ["id", "open-modal"], ["name", "add"], ["trigger", "open-modal", 3, "willDismiss"], ["sticky", ""], ["slot", "end", "size", "small", "fill", "clear", "color", "medium"], ["slot", "icon-only", "ios", "ellipsis-horizontal", "md", "ellipsis-horizontal"], [4, "ngFor", "ngForOf"], [1, "ion-align-items-center"], [1, "ion-margin-start", "order-type"], ["slot", "end", 1, "ion-text-wrap", "ion-text-right"], [1, "pips", 3, "color"], ["color", "medium", 1, "time"], ["color", "danger", 3, "click", 4, "ngIf"], ["color", "danger", 3, "click"], ["color", "medium", "slot", "end", 1, "ion-text-wrap"], [3, "click"], ["novalidate", "", 3, "ngSubmit", "formGroup"], [1, "ion-margin-start"], ["error-text", "Symbol is required", "formControlName", "symbol", "name", "symbol", "aria-label", "Pair", "interface", "action-sheet", "label", "Select Pair", "justify", "space-between"], ["value", "xauusd"], ["value", "eurusd"], ["error-text", "Order type is required", "formControlName", "actionType", "name", "actionType", "errorText", "Order is required", "aria-label", "Pending Order", "interface", "popover", "label", "Select Order", "justify", "space-between", "label-placement", "floating", "required", ""], ["value", "buy"], ["value", "sell"], [1, "error-text"], ["error-text", "Pair is required", "label", "Price", "labelPlacement", "floating", "type", "number", "formControlName", "openPrice", "required", ""], ["error-text", "Stop Loss is required", "label", "Stop Loss", "labelPlacement", "floating", "type", "number", "formControlName", "stopLoss", "required", ""], ["error-text", "Take Profit is required", "label", "Take Profit", "labelPlacement", "floating", "type", "number", "formControlName", "takeProfit", "required", ""], ["label", "Expired After", "labelPlacement", "floating", "type", "number", "formControlName", "expiration", "helperText", "*) Batas waktu maks 48 jam. Khusus Jumat maks 96 jam."], ["label", "Notes", "labelPlacement", "floating", "type", "text", "formControlName", "comment", "placeholder", "Maks. 48 chars (optional)", "helperText", "*) TradingView link for setup/mapping (only you can see this)"], [1, "ion-padding"], ["type", "submit", "expand", "block", "fill", "solid"]],
   template: function TradesPage_Template(rf, ctx) {
     if (rf & 1) {
-      const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-header", 2)(1, "ion-toolbar")(2, "ion-buttons", 3);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](3, "ion-menu-button");
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](4, TradesPage_ion_title_4_Template, 2, 0, "ion-title", 4);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "ion-buttons", 5);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](6, TradesPage_ion_button_6_Template, 2, 0, "ion-button", 4);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](7, "ion-button", 6);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function TradesPage_Template_ion_button_click_7_listener() {
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r1);
-        return _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵresetView"](ctx.presentFilter());
+      const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-header", 2)(1, "ion-toolbar")(2, "ion-buttons", 3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](3, "ion-menu-button");
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](4, TradesPage_ion_title_4_Template, 2, 0, "ion-title", 4);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "ion-buttons", 5)(6, "ion-button");
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](7, "ion-icon", 6);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()()();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "ion-content", 7)(9, "ion-header", 8)(10, "ion-toolbar")(11, "ion-title", 9);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](12, "Trades");
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](13, "ion-list");
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](14, TradesPage_ion_item_group_14_Template, 7, 1, "ion-item-group", 4)(15, TradesPage_ion_item_group_15_Template, 7, 1, "ion-item-group", 4);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](16, "ion-fab", 10, 0)(18, "ion-fab-button", 11);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](19, "ion-icon", 12);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](20, "ion-modal", 13);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("willDismiss", function TradesPage_Template_ion_modal_willDismiss_20_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r1);
+        return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx.onWillDismiss($event));
       });
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](8, TradesPage_span_8_Template, 2, 0, "span", 4)(9, TradesPage_span_9_Template, 2, 0, "span", 4);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](10, "ion-content", 7)(11, "ion-header", 8)(12, "ion-toolbar")(13, "ion-title", 9);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](14, "Trades");
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](15, "ion-list")(16, "ion-item-group")(17, "ion-item-divider", 10)(18, "ion-label");
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](19, "Positions");
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](20, "ion-button", 11);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](21, "ion-icon", 12);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](22, TradesPage_ion_item_sliding_22_Template, 16, 1, "ion-item-sliding", 13);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](23, "ion-item-group")(24, "ion-item-divider", 10)(25, "ion-label");
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](26, "Pending Orders");
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](27, "ion-button", 11);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](28, "ion-icon", 12);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](29, TradesPage_ion_item_sliding_29_Template, 14, 1, "ion-item-sliding", 13);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](30, "ion-fab", 14, 0)(32, "ion-fab-button", 15);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](33, "ion-icon", 16);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](34, "ion-modal", 17);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("willDismiss", function TradesPage_Template_ion_modal_willDismiss_34_listener($event) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r1);
-        return _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵresetView"](ctx.onWillDismiss($event));
-      });
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](35, TradesPage_ng_template_35_Template, 32, 1, "ng-template");
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](21, TradesPage_ng_template_21_Template, 32, 1, "ng-template");
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
     }
     if (rf & 2) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](4);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", !ctx.ios);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", !ctx.ios);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx.ios);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", !ctx.ios);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](13);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpureFunction0"](6, _c1));
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](7);
-      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpureFunction0"](7, _c1));
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](4);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", !ctx.ios);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](10);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx.positions && ctx.symbols);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", ctx.orders);
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_10__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_10__.NgIf, _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.RequiredValidator, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControlName, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonButtons, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonContent, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonFab, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonFabButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonHeader, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonIcon, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonInput, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItem, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItemDivider, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItemGroup, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItemOption, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItemOptions, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonItemSliding, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonLabel, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonList, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonMenuButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonNote, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonSelect, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonSelectOption, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonText, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonTitle, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonToolbar, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonModal, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.NumericValueAccessor, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.SelectValueAccessor, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.TextValueAccessor],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_12__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_12__.NgIf, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.RequiredValidator, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormControlName, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonButtons, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonContent, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonFab, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonFabButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonHeader, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonIcon, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonInput, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonItem, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonItemDivider, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonItemGroup, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonItemOption, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonItemOptions, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonItemSliding, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonLabel, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonList, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonMenuButton, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonNote, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonSelect, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonSelectOption, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonText, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonTitle, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonToolbar, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonModal, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.NumericValueAccessor, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.SelectValueAccessor, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.TextValueAccessor, _angular_common__WEBPACK_IMPORTED_MODULE_12__.DecimalPipe, _moment_pipe__WEBPACK_IMPORTED_MODULE_6__.TimeAgoPipe],
   styles: ["ion-item[track=tp][_ngcontent-%COMP%]   ion-label[_ngcontent-%COMP%] {\n  padding-left: 10px;\n  border-left: 2px solid var(--ion-color-rise);\n}\n\nion-item[track=sl][_ngcontent-%COMP%]   ion-label[_ngcontent-%COMP%] {\n  padding-left: 10px;\n  border-left: 2px solid var(--ion-color-fall);\n}\n\nion-fab-button[_ngcontent-%COMP%] {\n  --background: var(--ion-color-step-150, #ffffff);\n  --background-hover: var(--ion-color-step-200, #f2f2f2);\n  --background-focused: var(--ion-color-step-250, #d9d9d9);\n  --color: var(--ion-color-primary, #3880ff);\n}\n\n\n\n\n\n\n.ios[_ngcontent-%COMP%]   ion-fab-button[_ngcontent-%COMP%] {\n  --background-activated: var(--ion-color-step-250, #d9d9d9);\n}\n\nion-label[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n  display: flex;\n}\nion-label[_ngcontent-%COMP%]   .order-type[_ngcontent-%COMP%] {\n  font-size: x-small;\n  padding: 2px 6px;\n  border-radius: 3px;\n  margin-left: 10px;\n}\nion-label[_ngcontent-%COMP%]   .buy[_ngcontent-%COMP%] {\n  border: 1px solid var(--ion-color-rise);\n  color: var(--ion-color-rise);\n}\nion-label[_ngcontent-%COMP%]   .sell[_ngcontent-%COMP%] {\n  border: 1px solid var(--ion-color-fall);\n  color: var(--ion-color-fall);\n}\n\n.pips[_ngcontent-%COMP%] {\n  font-size: 1rem;\n  line-height: 24px;\n}\n\n.time[_ngcontent-%COMP%] {\n  display: block;\n  color: var(--ion-color-step-600, var(--ion-text-color-step-400, #666666));\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvcGFnZXMvdHJhZGVzL3RyYWRlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1FO0VBQ0Usa0JBQUE7RUFDQSw0Q0FBQTtBQUxKOztBQUdFO0VBQ0Usa0JBQUE7RUFDQSw0Q0FBQTtBQUFKOztBQUlBO0VBQ0UsZ0RBQUE7RUFDQSxzREFBQTtFQUNBLHdEQUFBO0VBQ0EsMENBQUE7QUFERjs7QUFJQTs7O0VBQUE7QUFJQTtFQUNFLDBEQUFBO0FBREY7O0FBS0U7RUFDRSxhQUFBO0FBRko7QUFLRTtFQUNFLGtCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0FBSEo7QUFNRTtFQUNFLHVDQUFBO0VBQ0EsNEJBQUE7QUFKSjtBQU9FO0VBQ0UsdUNBQUE7RUFDQSw0QkFBQTtBQUxKOztBQVNBO0VBQ0UsZUFBQTtFQUNBLGlCQUFBO0FBTkY7O0FBU0E7RUFDRSxjQUFBO0VBQ0EseUVBQUE7QUFORiIsInNvdXJjZXNDb250ZW50IjpbIiRjYXRlZ29yaWVzOiAoXG4gIHRwOiB2YXIoLS1pb24tY29sb3ItcmlzZSksXG4gIHNsOiB2YXIoLS1pb24tY29sb3ItZmFsbClcbik7XG5cbkBlYWNoICR0cmFjaywgJHZhbHVlIGluIG1hcC1yZW1vdmUoJGNhdGVnb3JpZXMpIHtcbiAgaW9uLWl0ZW1bdHJhY2s9JyN7JHRyYWNrfSddIGlvbi1sYWJlbCB7XG4gICAgcGFkZGluZy1sZWZ0OiAxMHB4O1xuICAgIGJvcmRlci1sZWZ0OiAycHggc29saWQgJHZhbHVlO1xuICB9XG59XG5cbmlvbi1mYWItYnV0dG9uIHtcbiAgLS1iYWNrZ3JvdW5kOiB2YXIoLS1pb24tY29sb3Itc3RlcC0xNTAsICNmZmZmZmYpO1xuICAtLWJhY2tncm91bmQtaG92ZXI6IHZhcigtLWlvbi1jb2xvci1zdGVwLTIwMCwgI2YyZjJmMik7XG4gIC0tYmFja2dyb3VuZC1mb2N1c2VkOiB2YXIoLS1pb24tY29sb3Itc3RlcC0yNTAsICNkOWQ5ZDkpO1xuICAtLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSwgIzM4ODBmZik7XG59XG5cbi8qXG4gKiBNYXRlcmlhbCBEZXNpZ24gdXNlcyB0aGUgcmlwcGxlIGZvciBhY3RpdmF0ZWRcbiAqIHNvIG9ubHkgc3R5bGUgdGhlIGlPUyBhY3RpdmF0ZWQgYmFja2dyb3VuZFxuICovXG4uaW9zIGlvbi1mYWItYnV0dG9uIHtcbiAgLS1iYWNrZ3JvdW5kLWFjdGl2YXRlZDogdmFyKC0taW9uLWNvbG9yLXN0ZXAtMjUwLCAjZDlkOWQ5KTtcbn1cblxuaW9uLWxhYmVsIHtcbiAgaDMge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gIH1cblxuICAub3JkZXItdHlwZSB7XG4gICAgZm9udC1zaXplOiB4LXNtYWxsO1xuICAgIHBhZGRpbmc6IDJweCA2cHg7XG4gICAgYm9yZGVyLXJhZGl1czogM3B4O1xuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xuICB9XG5cbiAgLmJ1eXtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1pb24tY29sb3ItcmlzZSk7XG4gICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1yaXNlKTtcbiAgfVxuXG4gIC5zZWxse1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWlvbi1jb2xvci1mYWxsKTtcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLWZhbGwpO1xuICB9XG59XG5cbi5waXBze1xuICBmb250LXNpemU6IDFyZW07XG4gIGxpbmUtaGVpZ2h0OiAyNHB4O1xufVxuXG4udGltZXtcbiAgZGlzcGxheTogYmxvY2s7XG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3Itc3RlcC02MDAsIHZhcigtLWlvbi10ZXh0LWNvbG9yLXN0ZXAtNDAwLCAjNjY2NjY2KSk7XG59Il0sInNvdXJjZVJvb3QiOiIifQ== */"]
 });
 
@@ -2558,7 +2633,7 @@ class ApiService {
   //   );
   // }
   client(path) {
-    return this.http.get('assets/data/server-time.json').pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_0__.map)(res => {
+    return this.http.get(`assets/data/${path}.json`).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_0__.map)(res => {
       return res;
     }, this));
   }
@@ -2606,18 +2681,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   WsService: () => (/* binding */ WsService)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 75797);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 37580);
 var _WsService;
 
+
 class WsService {
+  constructor() {
+    this.market = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject(null);
+    this.positions = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject(null);
+    // Observable to expose the market data
+    this.market$ = this.market.asObservable();
+    this.positions$ = this.positions.asObservable();
+  }
   connect() {
-    this.socket = new WebSocket('ws://127.0.0.1:9090'); // Replace with your Node.js server URL
+    this.socket = new WebSocket('ws://localhost:9090'); // Replace with your Node.js server URL
     this.socket.onopen = () => {
       console.log('WebSocket connected');
     };
     this.socket.onmessage = event => {
       const data = JSON.parse(event.data);
-      console.log('Real-time data:', data);
+      if (data.type === 'market') {
+        this.market.next(data.data);
+      }
+      if (data.type === 'position') {
+        this.positions.next(data.data);
+      }
     };
     this.socket.onclose = () => {
       console.log('WebSocket disconnected');
@@ -2636,7 +2725,7 @@ _WsService = WsService;
 _WsService.ɵfac = function WsService_Factory(t) {
   return new (t || _WsService)();
 };
-_WsService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+_WsService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: _WsService,
   factory: _WsService.ɵfac,
   providedIn: 'root'
