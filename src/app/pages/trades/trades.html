@@ -5,14 +5,8 @@
     </ion-buttons>
     <ion-title *ngIf="!ios">Trades</ion-title>
     <ion-buttons slot="end">
-      <ion-button *ngIf="!ios">
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-      <ion-button (click)="presentFilter()">
-        <span *ngIf="ios">Filter</span>
-        <span *ngIf="!ios">
-          <ion-icon slot="icon-only" name="options"></ion-icon>
-        </span>
+      <ion-button>
+        <ion-icon slot="icon-only" name="options"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -58,7 +52,7 @@
 
 
   <ion-list>
-    <ion-item-group>
+    <ion-item-group *ngIf="positions && symbols">
       <ion-item-divider sticky>
         <ion-label>Positions</ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
@@ -66,15 +60,16 @@
         </ion-button>
       </ion-item-divider>
 
-      <ion-item-sliding *ngFor="let x of [0,1,2,3]">
+      <ion-item-sliding *ngFor="let x of positions">
         <ion-item>
           <ion-label>
-            <h3 class="ion-align-items-center">XAUUSD <span class="ion-margin-start order-type sell">SELL</span></h3>
-            <p>2685 &rarr; 2650</p>
+            <h3 class="ion-align-items-center">{{x.symbol}} <span class="ion-margin-start order-type"
+                [class.sell]="x.type === 'sell'" [class.buy]="x.type === 'buy'">{{x.type.toUpperCase()}}</span></h3>
+            <p>{{x.openPrice}} &rarr; {{x.currentPrice}}</p>
           </ion-label>
           <div class="ion-text-wrap ion-text-right" slot="end">
-            <ion-note class="pips" color="rise">+25 pips</ion-note>
-            <small color="medium" class="time">2 hours ago</small>
+            <ion-note class="pips" [color]="x.pips > 0 ? 'rise' : 'fall'">{{x.profit | number:'1.2-2'}}</ion-note>
+            <small color="medium" class="time">{{x.brokerTime | timeAgo}}</small>
           </div>
         </ion-item>
         <ion-item-options>
@@ -86,7 +81,7 @@
       </ion-item-sliding>
     </ion-item-group>
 
-    <ion-item-group>
+    <ion-item-group *ngIf="orders">
       <ion-item-divider sticky>
         <ion-label>Pending Orders</ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
@@ -94,14 +89,16 @@
         </ion-button>
       </ion-item-divider>
 
-      <ion-item-sliding *ngFor="let x of [0,1,2,3]" #slidingItem>
+      <ion-item-sliding *ngFor="let x of orders" #slidingItem>
         <ion-item>
           <ion-label>
-            <h3 class="ion-align-items-center">XAUUSD <span class="ion-margin-start order-type buy">buy limit</span>
+            <h3 class="ion-align-items-center">{{x.symbol}} <span class="ion-margin-start order-type"
+                [class.sell]="x.type.includes('sell')"
+                [class.buy]="x.type.includes('buy')">{{x.type.toUpperCase()}}</span>
             </h3>
-            <p>0.01 at 2685</p>
+            <p>{{x.volume}} at {{x.openPrice}}</p>
           </ion-label>
-          <ion-text color="medium" class="ion-text-wrap" slot="end">Placed</ion-text>
+          <ion-text color="medium" class="ion-text-wrap" slot="end">{{x.state.toUpperCase()}}</ion-text>
         </ion-item>
         <ion-item-options>
           <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')"

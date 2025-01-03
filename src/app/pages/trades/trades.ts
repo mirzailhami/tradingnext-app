@@ -24,6 +24,8 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { WsService } from "../../services/ws.service";
+import { Subscription } from "rxjs";
+import { ApiService } from "../../services/api.service";
 
 @Component({
   selector: "page-trades",
@@ -48,6 +50,10 @@ export class TradesPage implements OnInit, OnDestroy {
 
   submitted = false;
   order: FormGroup;
+  private positionsSub: Subscription;
+  orders: any[];
+  positions: any[];
+  symbols: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -60,48 +66,52 @@ export class TradesPage implements OnInit, OnDestroy {
     public toastCtrl: ToastController,
     public user: UserData,
     public config: Config,
-    private webSocketService: WsService
+    private wsService: WsService,
+    private apiService: ApiService
   ) {}
 
   ngOnInit() {
-    this.webSocketService.connect();
-
-    this.order = this.fb.group({
-      actionType: ['', Validators.required],
-      symbol: ['', Validators.required],
-      openPrice: ['', Validators.required],
-      stopLoss: ['', Validators.required],
-      takeProfit: ['', Validators.required],
-      expiration: [''],
-      comment: [''],
+    this.wsService.connect();
+    this.positionsSub = this.wsService.positions$.subscribe((res) => {
+      this.positions = res;
+      console.log(res);
     });
 
-    this.updateSchedule();
+    // this.apiService.client("positions").subscribe((res: any[]) => {
+    //   this.positions = res.map((t) => ({
+    //     ...t,
+    //     type: this.formatOrderString(t.type),
+    //   }));
+    // });
+
+    this.apiService.client("orders").subscribe((res: any[]) => {
+      this.orders = res.map((t) => ({
+        ...t,
+        type: this.formatOrderString(t.type),
+        state: this.formatOrderString(t.state),
+      }));
+    });
+
+    this.order = this.fb.group({
+      actionType: ["", Validators.required],
+      symbol: ["", Validators.required],
+      openPrice: ["", Validators.required],
+      stopLoss: ["", Validators.required],
+      takeProfit: ["", Validators.required],
+      expiration: [""],
+      comment: [""],
+    });
 
     this.ios = this.config.get("mode") === "ios";
   }
 
-  ngOnDestroy() {
-    this.webSocketService.disconnect();
+  ionViewDidEnter() {
+    
   }
 
-  updateSchedule() {
-    // Close any open sliding items when the schedule updates
-    if (this.scheduleList) {
-      this.scheduleList.closeSlidingItems();
-    }
-
-    this.confData
-      .getTimeline(
-        this.dayIndex,
-        this.queryText,
-        this.excludeTracks,
-        this.segment
-      )
-      .subscribe((data: any) => {
-        this.shownSessions = data.shownSessions;
-        this.groups = data.groups;
-      });
+  ngOnDestroy() {
+    this.positionsSub.unsubscribe();
+    this.wsService.disconnect();
   }
 
   async presentFilter() {
@@ -115,7 +125,7 @@ export class TradesPage implements OnInit, OnDestroy {
     const { data } = await modal.onWillDismiss();
     if (data) {
       this.excludeTracks = data;
-      this.updateSchedule();
+      // this.updateSchedule();
     }
   }
 
@@ -169,7 +179,7 @@ export class TradesPage implements OnInit, OnDestroy {
           handler: () => {
             // they want to remove this session from their favorites
             this.user.removeFavorite(sessionData.name);
-            this.updateSchedule();
+            // this.updateSchedule();
 
             // close the sliding item and hide the option buttons
             slidingItem.close();
@@ -211,5 +221,16 @@ export class TradesPage implements OnInit, OnDestroy {
       // this.message = `Hello, ${ev.detail.data}!`;
       console.log(ev.detail);
     }
+  }
+
+  formatOrderString(orderString) {
+    if (!orderString) return "";
+
+    // Remove "ORDER_" prefix, split by underscores, and capitalize words
+    return orderString
+      .replace(/^ORDER_TYPE_|^ORDER_STATE_|^POSITION_TYPE_/, "") // Remove "ORDER_" prefix
+      .toLowerCase() // Convert to lowercase
+      .split("_") // Split into words
+      .join(" "); // Join words with spaces
   }
 }

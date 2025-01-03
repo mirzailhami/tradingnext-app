@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 import { TradesPage } from './trades';
 import { TradeFilterPage } from '../trade-filter/trade-filter';
 import { TradesRoutingModule } from './trades-routing.module';
+import { TimeAgoPipe } from './moment.pipe';
+
 
 @NgModule({
     imports: [
@@ -17,7 +19,8 @@ import { TradesRoutingModule } from './trades-routing.module';
     ],
     declarations: [
         TradesPage,
-        TradeFilterPage
+        TradeFilterPage,
+        TimeAgoPipe
     ]
 })
 export class TradesModule { }

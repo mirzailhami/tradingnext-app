@@ -31,7 +31,7 @@ export class ApiService {
 
   client(path: string): Observable<any> {
     return this.http
-      .get<any>('assets/data/server-time.json')
+      .get<any>(`assets/data/${path}.json`)
       .pipe(map(res => {
         return res;
       }, this));

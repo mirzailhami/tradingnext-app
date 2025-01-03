@@ -89,7 +89,7 @@ export class HistoryPage {
   ngOnInit() {
     this.ios = this.config.get("mode") === "ios";
     this.$brokerTime = this.apiService
-      .client("server-time")
+      .client('server-time')
       .subscribe((res: any) => {
         this.brokerTime = res.brokerTime;
       });
@@ -108,7 +108,7 @@ export class HistoryPage {
   ionViewDidEnter() {
     this.apiService
       .getHistoryTrades()
-      .pipe(delay(50))
+      // .pipe(delay(50))
       .subscribe((res: any[]) => {
         const { groupedTrades, symbols } = this.groupTradesByCloseDate(res);
         this.groupedTrades = groupedTrades;
