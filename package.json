@@ -7,7 +7,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href /tradingnext-app/",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint && npm run lint:sass",
     "lint:sass": "stylelint \"src/**/*.scss\"",
