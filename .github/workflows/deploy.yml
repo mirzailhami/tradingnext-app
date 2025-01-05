@@ -22,7 +22,7 @@ jobs:
       run: npm install
 
     - name: Build the project
-      run: npm run build --base-href https://mirzailhami.github.io/tradingnext-app/
+      run: npm run build --base-href ./tradingnext-app/
 
     - name: Ensure gh-pages branch exists
       run: |
