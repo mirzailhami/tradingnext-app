@@ -10,6 +10,7 @@ import { ConferenceData } from "../../providers/conference-data";
 import { Platform, Config } from "@ionic/angular";
 import { DOCUMENT } from "@angular/common";
 import { ApiService } from "../../services/api.service";
+import { Chart } from "../../providers/chart";
 
 @Component({
   selector: "page-dash",
@@ -21,7 +22,7 @@ export class DashPage implements OnInit {
   segment = 'summary';
   metrics = this.apiService.getMetrics();
 
-  constructor(private apiService: ApiService, public config: Config) {
+  constructor(private apiService: ApiService, public config: Config, private Chart: Chart) {
     this.apiService.getMetrics()
       .subscribe(res => {
         console.log(res);
@@ -30,5 +31,19 @@ export class DashPage implements OnInit {
 
   ngOnInit() {
     this.ios = this.config.get("mode") === "ios";
+
+    this.Chart.gauge('#profitability', 58, {
+      size: 200,
+      ringWidth: 15,
+      maxValue: 100,
+      transitionMs: 7000,
+    });
+
+    this.Chart.gauge('#risk', 9, {
+      size: 200,
+      ringWidth: 15,
+      maxValue: 10,
+      transitionMs: 7000,
+    });
   }
 }

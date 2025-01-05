@@ -55,38 +55,32 @@
     <ion-item-group *ngIf="positions && symbols">
       <ion-item-divider sticky>
         <ion-label>Positions</ion-label>
-        <ion-button slot="end" size="small" fill="clear" color="medium">
+        <!-- <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-horizontal"></ion-icon>
-        </ion-button>
+        </ion-button> -->
       </ion-item-divider>
 
-      <ion-item-sliding *ngFor="let x of positions">
-        <ion-item>
-          <ion-label>
-            <h3 class="ion-align-items-center">{{x.symbol}} <span class="ion-margin-start order-type"
-                [class.sell]="x.type === 'sell'" [class.buy]="x.type === 'buy'">{{x.type.toUpperCase()}}</span></h3>
-            <p>{{x.openPrice}} &rarr; {{x.currentPrice}}</p>
-          </ion-label>
-          <div class="ion-text-wrap ion-text-right" slot="end">
-            <ion-note class="pips" [color]="x.pips > 0 ? 'rise' : 'fall'">{{x.profit | number:'1.2-2'}}</ion-note>
-            <small color="medium" class="time">{{x.brokerTime | timeAgo}}</small>
-          </div>
-        </ion-item>
-        <ion-item-options>
-          <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')"
-            *ngIf="segment === 'favorites'">
-            Remove
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
+      <ion-item *ngFor="let x of positions">
+        <ion-label>
+          <h3 class="ion-align-items-center">{{x.symbol}} <span class="ion-margin-start order-type"
+              [class.sell]="x.type === 'sell'" [class.buy]="x.type === 'buy'">{{x.type.toUpperCase()}}</span></h3>
+          <p>{{x.openPrice}} &rarr; {{x.currentPrice}}</p>
+        </ion-label>
+        <div class="ion-text-wrap ion-text-right" slot="end">
+          <ion-note class="pips" [color]="x.pips > 0 ? 'rise' : 'fall'">{{x.profit | number:'1.2-2'}}</ion-note>
+          <small color="medium" class="time">{{x.brokerTime | timeAgo}}</small>
+        </div>
+      </ion-item>
     </ion-item-group>
 
     <ion-item-group *ngIf="orders">
       <ion-item-divider sticky>
         <ion-label>Pending Orders</ion-label>
-        <ion-button slot="end" size="small" fill="clear" color="medium">
+        <ion-button slot="end" size="small" fill="clear" color="medium" id="open-action-sheet">
           <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-horizontal"></ion-icon>
         </ion-button>
+        <ion-action-sheet trigger="open-action-sheet" header="Bulk Operations"
+          [buttons]="actionSheetButtons"></ion-action-sheet>
       </ion-item-divider>
 
       <ion-item-sliding *ngFor="let x of orders" #slidingItem>
@@ -101,8 +95,10 @@
           <ion-text color="medium" class="ion-text-wrap" slot="end">{{x.state.toUpperCase()}}</ion-text>
         </ion-item>
         <ion-item-options>
-          <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')"
-            *ngIf="segment === 'favorites'">
+          <ion-item-option color="secondary" (click)="edit(slidingItem, x)">
+            Edit
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="remove(slidingItem, x)">
             Remove
           </ion-item-option>
         </ion-item-options>

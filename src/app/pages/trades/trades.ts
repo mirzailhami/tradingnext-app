@@ -55,6 +55,44 @@ export class TradesPage implements OnInit, OnDestroy {
   positions: any[];
   symbols: any[] = [];
 
+  public actionSheetButtons = [
+    {
+      text: 'Delete All Orders',
+      data: {
+        action: 'delete',
+      },
+      handler: () => {
+        this.deleteAllOrders();
+      }
+    },
+    {
+      text: 'Delete Limit Orders',
+      data: {
+        action: 'delete',
+      },
+      handler: () => {
+        this.deleteLimitOrders();
+      }
+    },
+    {
+      text: 'Delete Stop Orders',
+      data: {
+        action: 'delete',
+      },
+      handler: () => {
+        this.deleteStopOrders();
+      }
+    },
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      data: {
+        action: 'cancel',
+      },
+    },
+  ];
+
+
   constructor(
     private fb: FormBuilder,
     public alertCtrl: AlertController,
@@ -72,17 +110,14 @@ export class TradesPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.wsService.connect();
-    this.positionsSub = this.wsService.positions$.subscribe((res) => {
-      this.positions = res;
-      console.log(res);
-    });
 
-    // this.apiService.client("positions").subscribe((res: any[]) => {
-    //   this.positions = res.map((t) => ({
-    //     ...t,
-    //     type: this.formatOrderString(t.type),
-    //   }));
-    // });
+    this.apiService.client("positions").subscribe((res: any[]) => {
+      this.positions = res;
+
+      this.positionsSub = this.wsService.positions$.subscribe(positions => {
+        this.positions = positions || this.positions;
+      });
+    });
 
     this.apiService.client("orders").subscribe((res: any[]) => {
       this.orders = res.map((t) => ({
@@ -129,59 +164,52 @@ export class TradesPage implements OnInit, OnDestroy {
     }
   }
 
-  async addFavorite(slidingItem: HTMLIonItemSlidingElement, sessionData: any) {
-    if (this.user.hasFavorite(sessionData.name)) {
-      // Prompt to remove favorite
-      this.removeFavorite(slidingItem, sessionData, "Favorite already added");
-    } else {
-      // Add as a favorite
-      this.user.addFavorite(sessionData.name);
+  // async addFavorite(slidingItem: HTMLIonItemSlidingElement, sessionData: any) {
+  //   if (this.user.hasFavorite(sessionData.name)) {
+  //     // Prompt to remove favorite
+  //     this.removeFavorite(slidingItem, sessionData, "Favorite already added");
+  //   } else {
+  //     // Add as a favorite
+  //     this.user.addFavorite(sessionData.name);
 
-      // Close the open item
-      slidingItem.close();
+  //     // Close the open item
+  //     slidingItem.close();
 
-      // Create a toast
-      const toast = await this.toastCtrl.create({
-        header: `${sessionData.name} was successfully added as a favorite.`,
-        duration: 3000,
-        buttons: [
-          {
-            text: "Close",
-            role: "cancel",
-          },
-        ],
-      });
+  //     // Create a toast
+  //     const toast = await this.toastCtrl.create({
+  //       header: `${sessionData.name} was successfully added as a favorite.`,
+  //       duration: 3000,
+  //       buttons: [
+  //         {
+  //           text: "Close",
+  //           role: "cancel",
+  //         },
+  //       ],
+  //     });
 
-      // Present the toast at the bottom of the page
-      await toast.present();
-    }
-  }
+  //     // Present the toast at the bottom of the page
+  //     await toast.present();
+  //   }
+  // }
 
-  async removeFavorite(
+  async remove(
     slidingItem: HTMLIonItemSlidingElement,
-    sessionData: any,
-    title: string
+    trade: any
   ) {
     const alert = await this.alertCtrl.create({
-      header: title,
-      message: "Would you like to remove this session from your favorites?",
+      header: 'Remove Pending Order',
+      message: "Would you like to remove this pending order?",
       buttons: [
         {
           text: "Cancel",
           handler: () => {
-            // they clicked the cancel button, do not remove the session
-            // close the sliding item and hide the option buttons
             slidingItem.close();
           },
         },
         {
           text: "Remove",
           handler: () => {
-            // they want to remove this session from their favorites
-            this.user.removeFavorite(sessionData.name);
-            // this.updateSchedule();
-
-            // close the sliding item and hide the option buttons
+            this.apiService.client(`orders/${trade.id}`, 'DELETE').subscribe(res => console.log(res));
             slidingItem.close();
           },
         },
@@ -232,5 +260,15 @@ export class TradesPage implements OnInit, OnDestroy {
       .toLowerCase() // Convert to lowercase
       .split("_") // Split into words
       .join(" "); // Join words with spaces
+  }
+
+  deleteLimitOrders() {
+    throw new Error("Method not implemented.");
+  }
+  deleteStopOrders() {
+    throw new Error("Method not implemented.");
+  }
+  deleteAllOrders() {
+    throw new Error("Method not implemented.");
   }
 }

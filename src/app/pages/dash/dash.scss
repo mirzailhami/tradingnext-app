@@ -1,0 +1,38 @@
+ion-card {
+    background: var(--ion-background-color, #fff);
+}
+
+.summary {
+    contain: content;
+
+    .box {
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        align-items: center;
+        padding: 0px 8px;
+        border: 1px solid var(--ion-border-color);
+
+        small {
+            color: var(--ion-color-step-650, #5f6368);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 450;
+        }
+
+        >div {
+            padding: 8px;
+        }
+
+        ion-card-title {
+            font-weight: bold;
+            margin: 0;
+        }
+    }
+}
+
+.gauge-chart {
+    font-size: 0.6rem;
+    color: var(--ion-color);
+}

@@ -5,10 +5,10 @@
     </ion-buttons>
     <ion-segment [(ngModel)]="segment" *ngIf="ios">
       <ion-segment-button value="summary" content-id="summary">
-        <ion-label>Summary</ion-label>
+        <ion-label>Metrics</ion-label>
       </ion-segment-button>
       <ion-segment-button value="stats" content-id="stats`">
-        <ion-label>Statistics</ion-label>
+        <ion-label>Performances</ion-label>
       </ion-segment-button>
     </ion-segment>
     <ion-title *ngIf="!ios">Dash</ion-title>
@@ -16,10 +16,10 @@
   <ion-toolbar *ngIf="!ios">
     <ion-segment [(ngModel)]="segment">
       <ion-segment-button value="summary" content-id="summary">
-        <ion-label>Summary</ion-label>
+        <ion-label>Metrics</ion-label>
       </ion-segment-button>
       <ion-segment-button value="stats" content-id="stats">
-        <ion-label>Statistics</ion-label>
+        <ion-label>Performances</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -42,42 +42,162 @@
       <ion-button class="ion-margin-end" size="small" fill="outline">6M</ion-button>
       <ion-button size="small" fill="outline">12M</ion-button>
     </div>
+
     <ion-list>
-      <ion-list-header lines="inset">
-        <ion-label>P/L Stats</ion-label>
-      </ion-list-header>
-      
-      <ion-item>
-        <ion-label>Days</ion-label>
-        <ion-note slot="end">{{(metrics | async)?.daysSinceTradingStarted}}</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Trades</ion-label>
-        <ion-note slot="end">{{(metrics | async)?.trades}}</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Win Rate</ion-label>
-        <ion-note slot="end">{{(metrics | async)?.wonTradesPercent}}</ion-note>
-      </ion-item>
+      <ion-item-divider>
+        <ion-label>Return</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
+      <div class="summary ion-margin-bottom">
+        <div id="profitability" class="gauge-chart ion-text-center"></div>
+        <ion-card class="box ion-margin-horizontal ion-padding">
+          <div>
+            <small>Win Rate</small>
+            <ion-card-title>{{(metrics | async)?.wonTradesPercent | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <!-- <div>
+            <small>Max Drawdown</small>
+            <ion-card-title>{{(metrics | async)?.maxDrawdown | number:'1.2-2'}}</ion-card-title>
+          </div> -->
+          <div>
+            <small>Risk-to-reward</small>
+            <ion-card-title>0.25</ion-card-title>
+          </div>
+        </ion-card>
+      </div>
+
+      <ion-item-divider>
+        <ion-label>Risk</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
+      <div class="summary ion-margin-bottom">
+        <div id="risk" class="gauge-chart ion-text-center"></div>
+        <ion-card class="box ion-margin-horizontal ion-padding">
+          <div>
+            <small>Max DD</small>
+            <ion-card-title>{{(metrics | async)?.maxDrawdown | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <div>
+            <small>Average Loss</small>
+            <ion-card-title>{{(metrics | async)?.averageLoss | number:'1.2-2'}}</ion-card-title>
+          </div>
+        </ion-card>
+      </div>
+
+      <ion-item-divider>
+        <ion-label>Risk-Adjusted Returns</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
+      <ion-item-divider>
+        <ion-label>Trade</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
+      <ion-item-divider>
+        <ion-label>Execution</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
+      <ion-grid [fixed]="true" class="ion-margin-bottom">
+        <ion-row>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>TRADES</small>
+              <ion-card-title>{{(metrics | async)?.trades}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>DAYS</small>
+              <ion-card-title>{{(metrics | async)?.daysSinceTradingStarted | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>AVERAGE WIN</small>
+              <ion-card-title>{{(metrics | async)?.averageWinPips | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>AVERAGE LOSS</small>
+              <ion-card-title>{{(metrics | async)?.averageLossPips | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>BEST TRADE</small>
+              <ion-card-title>{{(metrics | async)?.bestTradePips | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>WORST TRADE</small>
+              <ion-card-title>{{(metrics | async)?.worstTradePips | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>PROFIT FACTOR</small>
+              <ion-card-title>{{(metrics | async)?.profitFactor | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>STANDARD DEVIATION</small>
+              <ion-card-title>{{(metrics | async)?.standardDeviationProfit | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>EXPECTANCY</small>
+              <ion-card-title>{{(metrics | async)?.expectancy | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>PROBABILITY</small>
+              <ion-card-title>{{(metrics | async)?.probability | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>SHARPE RATIO</small>
+              <ion-card-title>{{(metrics | async)?.sharpeRatio | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6" size-md="4" size-lg="2">
+            <ion-card class="ion-padding ion-no-margin">
+              <small>CAGR</small>
+              <ion-card-title>{{(metrics | async)?.cagr | number:'1.2-2'}}</ion-card-title>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-item-divider>
+        <ion-label>Stats</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
       <ion-item>
         <ion-label>Profit Factor</ion-label>
         <ion-note slot="end">{{(metrics | async)?.profitFactor}}</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Average Win (pips)</ion-label>
-        <ion-note slot="end">{{(metrics | async)?.averageWinPips}}</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Average Loss (pips)</ion-label>
-        <ion-note slot="end">{{(metrics | async)?.averageLossPips}}</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Best Trade (pips)</ion-label>
-        <ion-note slot="end">{{(metrics | async)?.bestTradePips}}</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Worst Trade (pips)</ion-label>
-        <ion-note slot="end">{{(metrics | async)?.worstTradePips}}</ion-note>
       </ion-item>
       <ion-item>
         <ion-label>Standard Deviation</ion-label>
@@ -100,34 +220,8 @@
         <ion-note slot="end">{{(metrics | async)?.cagr}}</ion-note>
       </ion-item>
       <ion-item>
-        <ion-label>
-          <div class="ion-display-flex ion-align-items-center">
-            <span class="ion-margin-end">zScore</span>
-            <ion-icon id="click-trigger" name="information-circle-outline"></ion-icon>
-          </div>
-        </ion-label>
-        <ion-popover side="right" size="auto" trigger="click-trigger" triggerAction="click">
-          <ng-template>
-            <ion-content class="ion-padding">The lower the score, the higher the odds are that a company is heading
-              for
-              bankruptcy. An Altman Z-score of lower than 1.8, in particular, indicates that the company is on its way
-              to bankruptcy. Companies with scores above 3 are unlikely to enter bankruptcy. Scores in between 1.8 and
-              3
-              define a gray area.</ion-content>
-          </ng-template>
-        </ion-popover>
+        <ion-label>Z-SCORE</ion-label>
         <ion-note slot="end">{{(metrics | async)?.zScore}}</ion-note>
-      </ion-item>
-    </ion-list>
-    <ion-list>
-      <ion-list-header lines="inset">
-        <ion-label>Inset</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Item</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Item</ion-label>
       </ion-item>
     </ion-list>
   </ion-segment-content>

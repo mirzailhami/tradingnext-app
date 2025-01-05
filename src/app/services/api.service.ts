@@ -21,17 +21,16 @@ export class ApiService {
   //   );
   // }
 
-  // client(path: string): Observable<any> {
-  //   return this.http.get(`${this.SERVER_HOST}/client/${path}`).pipe(
+  // client(url: string, method: string = 'GET'): Observable<any> {
+  //   return this.http.request(method, `${this.SERVER_HOST}/client/${url}`).pipe(
   //     map((res: any) => {
   //       return res;
   //     })
   //   );
   // }
 
-  client(path: string): Observable<any> {
-    return this.http
-      .get<any>(`assets/data/${path}.json`)
+  client(url: string, method: string = 'GET'): Observable<any> {
+    return this.http.request(method, `assets/data/${url}.json`)
       .pipe(map(res => {
         return res;
       }, this));

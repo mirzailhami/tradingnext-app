@@ -74,8 +74,8 @@
             <p>{{trade.openPrice}} &xrarr; {{trade.closePrice}}</p>
           </ion-label>
           <div class="ion-text-wrap ion-text-right" slot="end">
-            <ion-note class="pips" [color]="trade.success === 'won' ? 'rise' : 'fall'">{{ (trade.pips * 10) |
-              number:'1.2-2' }} pips</ion-note>
+            <ion-note class="pips" [color]="trade.success === 'won' ? 'rise' : 'fall'">{{ (trade.pips) |
+              number:'1.2-2' }} <small>pips</small></ion-note>
             <small color="medium" class="time">{{trade.openTime | date:'HH:mm'}} &middot; {{trade.durationInMinutes |
               duration}}</small>
           </div>
