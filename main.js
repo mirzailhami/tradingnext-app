@@ -348,20 +348,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppModule: () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ 46443);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser */ 80436);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ 46443);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ 80436);
 /* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 80197);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 21507);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/storage-angular */ 26817);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 21507);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/storage-angular */ 26817);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 94114);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ 20092);
-/* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/service-worker */ 46140);
+/* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/service-worker */ 46140);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../environments/environment */ 45312);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ 34456);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 60316);
-/* harmony import */ var _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular/standalone */ 17241);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 34456);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 60316);
+/* harmony import */ var _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular/standalone */ 17241);
+/* harmony import */ var _pipes_duration_pipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pipes/duration.pipe */ 43038);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37580);
 var _AppModule;
+
 
 
 
@@ -383,27 +385,73 @@ _AppModule = AppModule;
 _AppModule.ɵfac = function AppModule_Factory(t) {
   return new (t || _AppModule)();
 };
-_AppModule.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
+_AppModule.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineNgModule"]({
   type: _AppModule,
   bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent]
 });
-_AppModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({
+_AppModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineInjector"]({
   providers: [_awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_0__.InAppBrowser, {
-    provide: _angular_common__WEBPACK_IMPORTED_MODULE_5__.LocationStrategy,
-    useClass: _angular_common__WEBPACK_IMPORTED_MODULE_5__.HashLocationStrategy
-  }, (0,_ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_6__.provideIonicAngular)({
+    provide: _angular_common__WEBPACK_IMPORTED_MODULE_6__.LocationStrategy,
+    useClass: _angular_common__WEBPACK_IMPORTED_MODULE_6__.HashLocationStrategy
+  }, (0,_ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_7__.provideIonicAngular)({
     useSetInputAPI: true //  required for input signals on controller based modals.
   })],
-  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.IonicModule.forRoot(), _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_11__.IonicStorageModule.forRoot(), _angular_service_worker__WEBPACK_IMPORTED_MODULE_12__.ServiceWorkerModule.register('ngsw-worker.js', {
+  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.IonicModule.forRoot(), _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_12__.IonicStorageModule.forRoot(), _angular_service_worker__WEBPACK_IMPORTED_MODULE_13__.ServiceWorkerModule.register('ngsw-worker.js', {
     enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_3__.environment.production
   })]
 });
 (function () {
-  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵsetNgModuleScope"](AppModule, {
-    declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent],
-    imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.IonicModule, _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_11__.IonicStorageModule, _angular_service_worker__WEBPACK_IMPORTED_MODULE_12__.ServiceWorkerModule]
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵsetNgModuleScope"](AppModule, {
+    declarations: [_pipes_duration_pipe__WEBPACK_IMPORTED_MODULE_4__.DurationPipe, _app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent],
+    imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.IonicModule, _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_12__.IonicStorageModule, _angular_service_worker__WEBPACK_IMPORTED_MODULE_13__.ServiceWorkerModule]
   });
 })();
+
+/***/ }),
+
+/***/ 43038:
+/*!****************************************!*\
+  !*** ./src/app/pipes/duration.pipe.ts ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DurationPipe: () => (/* binding */ DurationPipe)
+/* harmony export */ });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ 39545);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 37580);
+var _DurationPipe;
+
+
+class DurationPipe {
+  transform(value) {
+    const duration = moment__WEBPACK_IMPORTED_MODULE_0__.duration(value, 'minutes');
+    const days = duration.days();
+    const hours = duration.hours();
+    const minutes = duration.minutes();
+    let formatted = '';
+    if (days > 0) {
+      formatted += `${days}d `;
+    }
+    if (hours > 0) {
+      formatted += `${hours}h `;
+    }
+    formatted += `${minutes}m`;
+    return formatted;
+  }
+}
+_DurationPipe = DurationPipe;
+_DurationPipe.ɵfac = function DurationPipe_Factory(t) {
+  return new (t || _DurationPipe)();
+};
+_DurationPipe.ɵpipe = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefinePipe"]({
+  name: "duration",
+  type: _DurationPipe,
+  pure: true
+});
 
 /***/ }),
 
@@ -947,6 +995,311 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = () => (Object.keys(map));
 webpackAsyncContext.id = 52212;
 module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 35358:
+/*!***************************************************!*\
+  !*** ./node_modules/moment/locale/ sync ^\.\/.*$ ***!
+  \***************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./af": 85637,
+	"./af.js": 85637,
+	"./ar": 6777,
+	"./ar-dz": 74508,
+	"./ar-dz.js": 74508,
+	"./ar-kw": 67504,
+	"./ar-kw.js": 67504,
+	"./ar-ly": 95373,
+	"./ar-ly.js": 95373,
+	"./ar-ma": 92412,
+	"./ar-ma.js": 92412,
+	"./ar-ps": 78823,
+	"./ar-ps.js": 78823,
+	"./ar-sa": 36670,
+	"./ar-sa.js": 36670,
+	"./ar-tn": 36448,
+	"./ar-tn.js": 36448,
+	"./ar.js": 6777,
+	"./az": 23009,
+	"./az.js": 23009,
+	"./be": 28299,
+	"./be.js": 28299,
+	"./bg": 4685,
+	"./bg.js": 4685,
+	"./bm": 11171,
+	"./bm.js": 11171,
+	"./bn": 23590,
+	"./bn-bd": 5841,
+	"./bn-bd.js": 5841,
+	"./bn.js": 23590,
+	"./bo": 54309,
+	"./bo.js": 54309,
+	"./br": 54130,
+	"./br.js": 54130,
+	"./bs": 8033,
+	"./bs.js": 8033,
+	"./ca": 55294,
+	"./ca.js": 55294,
+	"./cs": 53028,
+	"./cs.js": 53028,
+	"./cv": 5807,
+	"./cv.js": 5807,
+	"./cy": 70342,
+	"./cy.js": 70342,
+	"./da": 38269,
+	"./da.js": 38269,
+	"./de": 11489,
+	"./de-at": 42123,
+	"./de-at.js": 42123,
+	"./de-ch": 17757,
+	"./de-ch.js": 17757,
+	"./de.js": 11489,
+	"./dv": 28152,
+	"./dv.js": 28152,
+	"./el": 7687,
+	"./el.js": 7687,
+	"./en-au": 46668,
+	"./en-au.js": 46668,
+	"./en-ca": 76798,
+	"./en-ca.js": 76798,
+	"./en-gb": 53615,
+	"./en-gb.js": 53615,
+	"./en-ie": 91364,
+	"./en-ie.js": 91364,
+	"./en-il": 79907,
+	"./en-il.js": 79907,
+	"./en-in": 70533,
+	"./en-in.js": 70533,
+	"./en-nz": 33190,
+	"./en-nz.js": 33190,
+	"./en-sg": 51096,
+	"./en-sg.js": 51096,
+	"./eo": 3962,
+	"./eo.js": 3962,
+	"./es": 37726,
+	"./es-do": 65010,
+	"./es-do.js": 65010,
+	"./es-mx": 63654,
+	"./es-mx.js": 63654,
+	"./es-us": 59043,
+	"./es-us.js": 59043,
+	"./es.js": 37726,
+	"./et": 25343,
+	"./et.js": 25343,
+	"./eu": 90728,
+	"./eu.js": 90728,
+	"./fa": 60787,
+	"./fa.js": 60787,
+	"./fi": 71771,
+	"./fi.js": 71771,
+	"./fil": 45335,
+	"./fil.js": 45335,
+	"./fo": 69761,
+	"./fo.js": 69761,
+	"./fr": 1670,
+	"./fr-ca": 28991,
+	"./fr-ca.js": 28991,
+	"./fr-ch": 97280,
+	"./fr-ch.js": 97280,
+	"./fr.js": 1670,
+	"./fy": 24203,
+	"./fy.js": 24203,
+	"./ga": 69858,
+	"./ga.js": 69858,
+	"./gd": 38605,
+	"./gd.js": 38605,
+	"./gl": 27365,
+	"./gl.js": 27365,
+	"./gom-deva": 33896,
+	"./gom-deva.js": 33896,
+	"./gom-latn": 95587,
+	"./gom-latn.js": 95587,
+	"./gu": 97950,
+	"./gu.js": 97950,
+	"./he": 92029,
+	"./he.js": 92029,
+	"./hi": 51897,
+	"./hi.js": 51897,
+	"./hr": 29816,
+	"./hr.js": 29816,
+	"./hu": 22253,
+	"./hu.js": 22253,
+	"./hy-am": 28196,
+	"./hy-am.js": 28196,
+	"./id": 51307,
+	"./id.js": 51307,
+	"./is": 95474,
+	"./is.js": 95474,
+	"./it": 23099,
+	"./it-ch": 45807,
+	"./it-ch.js": 45807,
+	"./it.js": 23099,
+	"./ja": 19127,
+	"./ja.js": 19127,
+	"./jv": 30182,
+	"./jv.js": 30182,
+	"./ka": 10758,
+	"./ka.js": 10758,
+	"./kk": 93444,
+	"./kk.js": 93444,
+	"./km": 72034,
+	"./km.js": 72034,
+	"./kn": 46223,
+	"./kn.js": 46223,
+	"./ko": 83064,
+	"./ko.js": 83064,
+	"./ku": 8714,
+	"./ku-kmr": 10961,
+	"./ku-kmr.js": 10961,
+	"./ku.js": 8714,
+	"./ky": 12062,
+	"./ky.js": 12062,
+	"./lb": 84796,
+	"./lb.js": 84796,
+	"./lo": 19279,
+	"./lo.js": 19279,
+	"./lt": 106,
+	"./lt.js": 106,
+	"./lv": 11840,
+	"./lv.js": 11840,
+	"./me": 42240,
+	"./me.js": 42240,
+	"./mi": 13588,
+	"./mi.js": 13588,
+	"./mk": 15518,
+	"./mk.js": 15518,
+	"./ml": 37823,
+	"./ml.js": 37823,
+	"./mn": 98657,
+	"./mn.js": 98657,
+	"./mr": 61285,
+	"./mr.js": 61285,
+	"./ms": 43014,
+	"./ms-my": 86253,
+	"./ms-my.js": 86253,
+	"./ms.js": 43014,
+	"./mt": 20167,
+	"./mt.js": 20167,
+	"./my": 47940,
+	"./my.js": 47940,
+	"./nb": 50014,
+	"./nb.js": 50014,
+	"./ne": 49023,
+	"./ne.js": 49023,
+	"./nl": 34208,
+	"./nl-be": 71412,
+	"./nl-be.js": 71412,
+	"./nl.js": 34208,
+	"./nn": 81354,
+	"./nn.js": 81354,
+	"./oc-lnc": 40870,
+	"./oc-lnc.js": 40870,
+	"./pa-in": 80389,
+	"./pa-in.js": 80389,
+	"./pl": 7342,
+	"./pl.js": 7342,
+	"./pt": 34774,
+	"./pt-br": 73003,
+	"./pt-br.js": 73003,
+	"./pt.js": 34774,
+	"./ro": 85333,
+	"./ro.js": 85333,
+	"./ru": 73451,
+	"./ru.js": 73451,
+	"./sd": 43921,
+	"./sd.js": 43921,
+	"./se": 59682,
+	"./se.js": 59682,
+	"./si": 80582,
+	"./si.js": 80582,
+	"./sk": 4348,
+	"./sk.js": 4348,
+	"./sl": 95337,
+	"./sl.js": 95337,
+	"./sq": 39358,
+	"./sq.js": 39358,
+	"./sr": 50683,
+	"./sr-cyrl": 69382,
+	"./sr-cyrl.js": 69382,
+	"./sr.js": 50683,
+	"./ss": 51156,
+	"./ss.js": 51156,
+	"./sv": 29855,
+	"./sv.js": 29855,
+	"./sw": 18536,
+	"./sw.js": 18536,
+	"./ta": 15373,
+	"./ta.js": 15373,
+	"./te": 37809,
+	"./te.js": 37809,
+	"./tet": 61297,
+	"./tet.js": 61297,
+	"./tg": 92527,
+	"./tg.js": 92527,
+	"./th": 85862,
+	"./th.js": 85862,
+	"./tk": 79331,
+	"./tk.js": 79331,
+	"./tl-ph": 44387,
+	"./tl-ph.js": 44387,
+	"./tlh": 3592,
+	"./tlh.js": 3592,
+	"./tr": 79732,
+	"./tr.js": 79732,
+	"./tzl": 99570,
+	"./tzl.js": 99570,
+	"./tzm": 83553,
+	"./tzm-latn": 7699,
+	"./tzm-latn.js": 7699,
+	"./tzm.js": 83553,
+	"./ug-cn": 25674,
+	"./ug-cn.js": 25674,
+	"./uk": 69974,
+	"./uk.js": 69974,
+	"./ur": 45773,
+	"./ur.js": 45773,
+	"./uz": 22738,
+	"./uz-latn": 77135,
+	"./uz-latn.js": 77135,
+	"./uz.js": 22738,
+	"./vi": 20043,
+	"./vi.js": 20043,
+	"./x-pseudo": 40767,
+	"./x-pseudo.js": 40767,
+	"./yo": 80150,
+	"./yo.js": 80150,
+	"./zh-cn": 21828,
+	"./zh-cn.js": 21828,
+	"./zh-hk": 86644,
+	"./zh-hk.js": 86644,
+	"./zh-mo": 79305,
+	"./zh-mo.js": 79305,
+	"./zh-tw": 31860,
+	"./zh-tw.js": 31860
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 35358;
 
 /***/ })
 
