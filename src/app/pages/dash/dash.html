@@ -45,71 +45,125 @@
 
     <ion-list>
       <ion-item-divider>
-        <ion-label>Return</ion-label>
+        <ion-label>Trade 30%</ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
         </ion-button>
       </ion-item-divider>
 
       <div class="summary ion-margin-bottom">
-        <div id="profitability" class="gauge-chart ion-text-center"></div>
+        <div id="trade" class="gauge-chart ion-text-center"></div>
         <ion-card class="box ion-margin-horizontal ion-padding">
           <div>
-            <small>Win Rate</small>
-            <ion-card-title>{{(metrics | async)?.wonTradesPercent | number:'1.2-2'}}</ion-card-title>
+            <small>Total Trades</small>
+            <ion-card-title>{{(metrics | async)?.trades }}</ion-card-title>
           </div>
-          <!-- <div>
-            <small>Max Drawdown</small>
-            <ion-card-title>{{(metrics | async)?.maxDrawdown | number:'1.2-2'}}</ion-card-title>
-          </div> -->
           <div>
-            <small>Risk-to-reward</small>
-            <ion-card-title>0.25</ion-card-title>
+            <small>Won Trade %</small>
+            <ion-card-title>{{(metrics | async)?.wonTradesPercent | number:'1.2-2'}}%</ion-card-title>
+          </div>
+          <div>
+            <small>Average Trade</small>
+            <ion-card-title>{{(metrics | async)?.averageTradeLengthInMilliseconds | date:'HH mm'}}</ion-card-title>
+          </div>
+        </ion-card>
+      </div> 
+
+      <ion-item-divider>
+        <ion-label>Return 25%</ion-label>
+        <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+      <div class="summary ion-margin-bottom">
+        <div id="return" class="gauge-chart ion-text-center"></div>
+        <ion-card class="box ion-margin-horizontal ion-padding">
+          <div>
+            <small>CAGR</small>
+            <ion-card-title>{{(metrics | async)?.cagr | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <div>
+            <small>Total Profit</small>
+            <ion-card-title>{{(metrics | async)?.profit | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <div>
+            <small>Expectancy</small>
+            <ion-card-title>{{(metrics | async)?.expectancy | number:'1.2-2'}}</ion-card-title>
           </div>
         </ion-card>
       </div>
 
       <ion-item-divider>
-        <ion-label>Risk</ion-label>
+        <ion-label>Risk 20%</ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
         </ion-button>
       </ion-item-divider>
-
       <div class="summary ion-margin-bottom">
         <div id="risk" class="gauge-chart ion-text-center"></div>
         <ion-card class="box ion-margin-horizontal ion-padding">
           <div>
             <small>Max DD</small>
-            <ion-card-title>{{(metrics | async)?.maxDrawdown | number:'1.2-2'}}</ion-card-title>
+            <ion-card-title>{{(metrics | async)?.cagr | number:'1.2-2'}}</ion-card-title>
           </div>
           <div>
-            <small>Average Loss</small>
-            <ion-card-title>{{(metrics | async)?.averageLoss | number:'1.2-2'}}</ion-card-title>
+            <small>Profit Factor</small>
+            <ion-card-title>{{(metrics | async)?.profit | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <div>
+            <small>Z-Score</small>
+            <ion-card-title>{{(metrics | async)?.expectancy | number:'1.2-2'}}</ion-card-title>
           </div>
         </ion-card>
       </div>
 
       <ion-item-divider>
-        <ion-label>Risk-Adjusted Returns</ion-label>
+        <ion-label>Execution 15%</ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
         </ion-button>
       </ion-item-divider>
+      <div class="summary ion-margin-bottom">
+        <div id="execution" class="gauge-chart ion-text-center"></div>
+        <ion-card class="box ion-margin-horizontal ion-padding">
+          <div>
+            <small>Average Win & Loss</small>
+            <ion-card-title>{{(metrics | async)?.cagr | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <div>
+            <small>RR Ratio</small>
+            <ion-card-title>{{(metrics | async)?.profit | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <div>
+            <small>Average Holding</small>
+            <ion-card-title>{{(metrics | async)?.expectancy | number:'1.2-2'}}</ion-card-title>
+          </div>
+        </ion-card>
+      </div>
 
       <ion-item-divider>
-        <ion-label>Trade</ion-label>
+        <ion-label>Diversification and Exposure 10%</ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
         </ion-button>
       </ion-item-divider>
-
-      <ion-item-divider>
-        <ion-label>Execution</ion-label>
-        <ion-button slot="end" size="small" fill="clear" color="medium">
-          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
-        </ion-button>
-      </ion-item-divider>
+      <div class="summary ion-margin-bottom">
+        <div id="exposure" class="gauge-chart ion-text-center"></div>
+        <ion-card class="box ion-margin-horizontal ion-padding">
+          <div>
+            <small>Currency Variety</small>
+            <ion-card-title>{{(metrics | async)?.cagr | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <div>
+            <small>Long vs. Short Ratio</small>
+            <ion-card-title>{{(metrics | async)?.profit | number:'1.2-2'}}</ion-card-title>
+          </div>
+          <div>
+            <small>Total Lots</small>
+            <ion-card-title>{{(metrics | async)?.expectancy | number:'1.2-2'}}</ion-card-title>
+          </div>
+        </ion-card>
+      </div>
 
       <ion-grid [fixed]="true" class="ion-margin-bottom">
         <ion-row>

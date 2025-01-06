@@ -12,7 +12,7 @@ import { DashPageRoutingModule } from './dash-routing.module';
     DashPageRoutingModule
   ],
   declarations: [
-    DashPage,
+    DashPage
   ]
 })
 export class DashModule { }

@@ -4,7 +4,6 @@ import { IonAvatar, IonButton, IonContent, IonHeader, IonImg, IonItem, IonLabel,
 
 import { HistoryPage } from './history';
 import { HistoryPageRoutingModule } from './history-routing.module';
-import { DurationPipe } from './duration.pipe';
 import { IonRangeCalendarComponent } from '@googlproxer/ion-range-calendar';
 import { IonicModule } from '@ionic/angular';
 
@@ -16,6 +15,6 @@ import { IonicModule } from '@ionic/angular';
     IonRangeCalendarComponent,
     HistoryPageRoutingModule
   ],
-  declarations: [HistoryPage, DurationPipe]
+  declarations: [HistoryPage]
 })
 export class HistoryPageModule {}

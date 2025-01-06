@@ -32,10 +32,17 @@ export class DashPage implements OnInit {
   ngOnInit() {
     this.ios = this.config.get("mode") === "ios";
 
-    this.Chart.gauge('#profitability', 58, {
+    this.Chart.gauge('#trade', 58, {
       size: 200,
       ringWidth: 15,
       maxValue: 100,
+      transitionMs: 7000,
+    });
+
+    this.Chart.gauge('#return', 9, {
+      size: 200,
+      ringWidth: 15,
+      maxValue: 10,
       transitionMs: 7000,
     });
 
@@ -45,5 +52,21 @@ export class DashPage implements OnInit {
       maxValue: 10,
       transitionMs: 7000,
     });
+
+    this.Chart.gauge('#execution', 9, {
+      size: 200,
+      ringWidth: 15,
+      maxValue: 10,
+      transitionMs: 7000,
+    });
+
+    this.Chart.gauge('#exposure', 9, {
+      size: 200,
+      ringWidth: 15,
+      maxValue: 10,
+      transitionMs: 7000,
+    });
   }
+
+  
 }

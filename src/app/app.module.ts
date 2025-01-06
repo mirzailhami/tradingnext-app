@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { IonIcon } from '@ionic/angular/standalone';
-
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import { IonIcon } from '@ionic/angular/standalone';
       enabled: environment.production
     })
   ],
-  declarations: [AppComponent],
+  declarations: [DurationPipe, AppComponent],
   providers: [
     InAppBrowser,
     {provide: LocationStrategy, useClass: HashLocationStrategy},

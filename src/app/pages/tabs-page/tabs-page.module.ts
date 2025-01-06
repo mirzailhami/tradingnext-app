@@ -21,7 +21,7 @@ import { HistoryPageModule } from '../history/history.module';
     TabsPageRoutingModule
   ],
   declarations: [
-    TabsPage,
+    TabsPage
   ]
 })
 export class TabsModule { }
