@@ -36,6 +36,13 @@ export class ApiService {
       }, this));
   }
 
+  stats(url: string, method: string = 'GET'): Observable<any> {
+    return this.http.request(method, `${this.SERVER_HOST}/stats/${url}`).pipe(
+      map(res => {
+        return res;
+      }));
+  }
+
   getMetrics(): Observable<any> {
     if (this.metrics) {
       return of(this.metrics);

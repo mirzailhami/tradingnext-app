@@ -4,13 +4,14 @@ import {
   Inject,
   ViewChild,
   AfterViewInit,
-  OnInit
+  OnInit,
 } from "@angular/core";
 import { ConferenceData } from "../../providers/conference-data";
 import { Platform, Config } from "@ionic/angular";
 import { DOCUMENT } from "@angular/common";
 import { ApiService } from "../../services/api.service";
 import { Chart } from "../../providers/chart";
+import { Subscription, Observable } from "rxjs";
 
 @Component({
   selector: "page-dash",
@@ -19,54 +20,27 @@ import { Chart } from "../../providers/chart";
 })
 export class DashPage implements OnInit {
   ios: boolean;
-  segment = 'summary';
-  metrics = this.apiService.getMetrics();
+  segment = "summary";
+  metrics$: Observable<any> = this.apiService.stats("metrics");
+  metricsSubscription: Subscription;
+  metrics: any;
 
-  constructor(private apiService: ApiService, public config: Config, private Chart: Chart) {
-    this.apiService.getMetrics()
-      .subscribe(res => {
-        console.log(res);
-      });
-  }
+  constructor(
+    private apiService: ApiService,
+    public config: Config,
+    private Chart: Chart
+  ) {}
 
   ngOnInit() {
     this.ios = this.config.get("mode") === "ios";
 
-    this.Chart.gauge('#trade', 58, {
-      size: 200,
-      ringWidth: 15,
-      maxValue: 100,
-      transitionMs: 7000,
-    });
-
-    this.Chart.gauge('#return', 9, {
-      size: 200,
-      ringWidth: 15,
-      maxValue: 10,
-      transitionMs: 7000,
-    });
-
-    this.Chart.gauge('#risk', 9, {
-      size: 200,
-      ringWidth: 15,
-      maxValue: 10,
-      transitionMs: 7000,
-    });
-
-    this.Chart.gauge('#execution', 9, {
-      size: 200,
-      ringWidth: 15,
-      maxValue: 10,
-      transitionMs: 7000,
-    });
-
-    this.Chart.gauge('#exposure', 9, {
-      size: 200,
-      ringWidth: 15,
-      maxValue: 10,
-      transitionMs: 7000,
+    this.metricsSubscription = this.metrics$.subscribe((res) => {
+      this.metrics = res;
+      this.Chart.init(res);
     });
   }
 
-  
+  ngondestroy() {
+    this.metricsSubscription.unsubscribe();
+  }
 }
