@@ -45,22 +45,19 @@
 
     <ion-list>
       <ion-item-divider>
-        <ion-label>Trade {{metrics?.trade.weight}}</ion-label>
-        <ion-button slot="end" size="small" fill="clear" color="medium">
-          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
-        </ion-button>
+        <ion-label>Trading Ability <ion-note class="grade" [class]="metrics?.trade.grade.toLowerCase()">{{metrics?.trade.grade}}</ion-note></ion-label>
       </ion-item-divider>
 
       <div class="summary ion-margin-bottom">
         <div id="trade" class="gauge-chart ion-text-center"></div>
         <ion-card class="box ion-margin-horizontal ion-padding">
           <div>
-            <small>Trades/day</small>
-            <ion-card-title>{{metrics?.trade.tradesPerDay | number:'1.2-2'}}</ion-card-title>
+            <small>Trades</small>
+            <ion-card-title>{{metrics?.trade.tradesPerDay | number:'1.2-2'}}<span class="unit">/day</span></ion-card-title>
           </div>
           <div>
-            <small>Won Trade %</small>
-            <ion-card-title>{{metrics?.trade.wonTradesPercent | number:'1.2-2'}}%</ion-card-title>
+            <small>Won Trade</small>
+            <ion-card-title>{{metrics?.trade.wonTradesPercent | number:'1.2-2'}}<span class="unit">%</span></ion-card-title>
           </div>
           <div>
             <small>Average Trade</small>
@@ -70,7 +67,7 @@
       </div> 
 
       <ion-item-divider>
-        <ion-label>Return {{metrics?.return?.weight}}</ion-label>
+        <ion-label>Return, P/L<ion-note class="grade" [class]="metrics?.return.grade.toLowerCase()">{{metrics?.return.grade}}</ion-note></ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
         </ion-button>
@@ -84,7 +81,7 @@
           </div>
           <div>
             <small>Total Profit</small>
-            <ion-card-title>{{metrics?.return?.profit | number:'1.2-2'}}<span></span></ion-card-title>
+            <ion-card-title>{{metrics?.return?.profit | number:'1.2-2'}}<span class="unit">$</span></ion-card-title>
           </div>
           <div>
             <small>Expectancy</small>
@@ -94,7 +91,7 @@
       </div>
 
       <ion-item-divider>
-        <ion-label>Risk {{metrics?.risk?.weight}}</ion-label>
+        <ion-label>Risk Management <ion-note class="grade" [class]="metrics?.risk.grade.toLowerCase()">{{metrics?.risk.grade}}</ion-note></ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
         </ion-button>
@@ -104,7 +101,7 @@
         <ion-card class="box ion-margin-horizontal ion-padding">
           <div>
             <small>Max DD</small>
-            <ion-card-title>{{metrics?.risk?.maxDrawdown | number:'1.2-2'}}</ion-card-title>
+            <ion-card-title>{{metrics?.risk?.maxDrawdown | number:'1.2-2'}}<span class="unit">%</span></ion-card-title>
           </div>
           <div>
             <small>Profit Factor</small>
@@ -118,7 +115,7 @@
       </div>
 
       <ion-item-divider>
-        <ion-label>Execution {{metrics?.execution?.weight}}</ion-label>
+        <ion-label>Trade Execution <ion-note class="grade" [class]="metrics?.execution.grade.toLowerCase()">{{metrics?.execution.grade}}</ion-note></ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
         </ion-button>
@@ -128,11 +125,11 @@
         <ion-card class="box ion-margin-horizontal ion-padding">
           <div>
             <small>Average Win</small>
-            <ion-card-title>{{metrics?.execution?.averageWin | number:'1.2-2'}}</ion-card-title>
+            <ion-card-title>{{metrics?.execution?.averageWin | number:'1.2-2'}}<span class="unit">%</span></ion-card-title>
           </div>
           <div>
             <small>Average Loss</small>
-            <ion-card-title>{{metrics?.execution?.averageLoss | number:'1.2-2'}}</ion-card-title>
+            <ion-card-title>{{metrics?.execution?.averageLoss | number:'1.2-2'}}<span class="unit">%</span></ion-card-title>
           </div>
           <div>
             <small>RR Ratio</small>
@@ -142,7 +139,7 @@
       </div>
 
       <ion-item-divider>
-        <ion-label>Diversification and Exposure {{metrics?.diversification?.weight}}</ion-label>
+        <ion-label>Diversification and Exposure <ion-note class="grade" [class]="metrics?.diversification.grade.toLowerCase()">{{metrics?.diversification.grade}}</ion-note></ion-label>
         <ion-button slot="end" size="small" fill="clear" color="medium">
           <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
         </ion-button>
@@ -151,7 +148,7 @@
         <div id="exposure" class="gauge-chart ion-text-center"></div>
         <ion-card class="box ion-margin-horizontal ion-padding">
           <div>
-            <small>Currency Variety</small>
+            <small>Pair Variety</small>
             <ion-card-title>{{metrics?.diversification?.currencyVariety}}</ion-card-title>
           </div>
           <div>

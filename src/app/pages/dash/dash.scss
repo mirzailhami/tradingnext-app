@@ -1,37 +1,65 @@
 ion-card {
-    background: var(--ion-background-color, #fff);
+  background: var(--ion-background-color, #fff);
 }
 
 .summary {
-    contain: content;
+  contain: content;
 
-    .box {
-        border-radius: 4px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 0px 8px;
-        border: 1px solid var(--ion-border-color);
+  .box {
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px 8px;
+    border: 1px solid var(--ion-border-color);
 
-        small {
-            color: var(--ion-color-step-650, #5f6368);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            font-weight: 450;
-        }
-
-        >div {
-            padding: 8px;
-        }
-
-        ion-card-title {
-            font-weight: bold;
-            margin-top: 5px;
-        }
+    small {
+      color: var(--ion-color-step-650, #5f6368);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 450;
     }
+
+    .unit {
+      color: var(--ion-color-step-650, #5f6368);
+      font-size: 60%;
+      font-weight: 200;
+    }
+
+    > div {
+      padding: 8px;
+    }
+
+    ion-card-title {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  }
+}
+
+.grade {
+  color: white;
+  font-size: 75%;
+  padding: 2px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  margin-left: 5px;
+}
+
+.bad {
+  background: #fa5c5c;
+}
+.fair {
+  background: #f9bc33;
+}
+.good {
+  background: #40ad88;
+}
+.excellent {
+  background: #1b8255;
 }
 
 .gauge-chart {
-    font-size: 0.6rem;
-    color: var(--ion-color);
+  font-size: 0.6rem;
+  color: var(--ion-color);
 }
