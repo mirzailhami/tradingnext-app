@@ -1,1 +1,44 @@
-{"trade":{"tradesPerDay":3.768399551108672,"wonTradesPercent":38.059701492537314,"averageTradeLengthInMilliseconds":22285293,"weight":0.3,"score":4.4770894658877936},"return":{"cagr":-34.62159858350652,"profit":-52.48999999999999,"expectancy":-0.19585820895522432,"weight":0.25,"score":3.376450573723799},"risk":{"maxDrawdown":16.84318891661286,"profitFactor":0.9460368047702272,"zScore":-1.6693907000161303,"weight":0.2,"score":2.492797853167603},"execution":{"averageWin":9.021666666666663,"averageLoss":-5.859638554216866,"rrRatio":1.5396285254103697,"weight":0.15,"score":4.930306574710479},"diversification":{"currencyVariety":13,"longShortRatio":2.0804597701149423,"lots":4.489999999999979,"weight":0.1,"score":6.24833333333333},"overallScore":4.050178373370714,"grade":"C"}
+{
+    "trade": {
+        "tradesPerDay": 3.685566228544297,
+        "wonTradesPercent": 38.059701492537314,
+        "averageTradeLengthInMilliseconds": 22285293,
+        "weight": 0.3,
+        "score": 4.442575581485971,
+        "grade": "Fair"
+    },
+    "return": {
+        "cagr": -34.62159858350652,
+        "profit": -52.48999999999999,
+        "expectancy": -0.19585820895522432,
+        "weight": 0.25,
+        "score": 3.376450573723799,
+        "grade": "Fair"
+    },
+    "risk": {
+        "maxDrawdown": 16.84318891661286,
+        "profitFactor": 0.9460368047702272,
+        "zScore": -1.6693907000161303,
+        "weight": 0.2,
+        "score": 2.492797853167603,
+        "grade": "Bad"
+    },
+    "execution": {
+        "averageWin": 9.021666666666663,
+        "averageLoss": -5.859638554216866,
+        "rrRatio": 1.5396285254103697,
+        "weight": 0.15,
+        "score": 4.930306574710479,
+        "grade": "Fair"
+    },
+    "diversification": {
+        "currencyVariety": 13,
+        "longShortRatio": 2.0804597701149423,
+        "lots": 4.489999999999979,
+        "weight": 0.1,
+        "score": 6.24833333333333,
+        "grade": "Good"
+    },
+    "overallScore": 4.039824208050167,
+    "grade": "C"
+}
