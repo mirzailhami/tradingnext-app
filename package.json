@@ -42,6 +42,7 @@
     "@googlproxer/ion-range-calendar": "^19.0.0",
     "@ionic/angular": "^8.4.1",
     "@ionic/storage-angular": "^4.0.0",
+    "@swimlane/ngx-datatable": "^20.1.0",
     "cordova-plugin-inappbrowser": "5.0.0",
     "core-js": "^3.6.4",
     "d3": "^7.9.0",

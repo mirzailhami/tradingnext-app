@@ -5,10 +5,10 @@
     </ion-buttons>
     <ion-segment [(ngModel)]="segment" *ngIf="ios">
       <ion-segment-button value="summary" content-id="summary">
-        <ion-label>Metrics</ion-label>
+        <ion-label>Summary</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="stats" content-id="stats`">
-        <ion-label>Performances</ion-label>
+      <ion-segment-button value="metrics" content-id="metrics`">
+        <ion-label>Metrics</ion-label>
       </ion-segment-button>
     </ion-segment>
     <ion-title *ngIf="!ios">Dash</ion-title>
@@ -16,10 +16,10 @@
   <ion-toolbar *ngIf="!ios">
     <ion-segment [(ngModel)]="segment">
       <ion-segment-button value="summary" content-id="summary">
-        <ion-label>Metrics</ion-label>
+        <ion-label>Summary</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="stats" content-id="stats">
-        <ion-label>Performances</ion-label>
+      <ion-segment-button value="metrics" content-id="metrics">
+        <ion-label>Metrics</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -42,10 +42,261 @@
       <ion-button class="ion-margin-end" size="small" fill="outline">6M</ion-button>
       <ion-button size="small" fill="outline">12M</ion-button>
     </div> -->
+    <ion-card class="ion-padding-horizontal ion-margin">
+      <ion-list>
+        <ion-item class="ion-no-padding">
+          <ion-label>
+            <div>Return</div>
+            <ion-note>All time</ion-note>
+          </ion-label>
+          <ion-text slot="end">700%</ion-text>
+        </ion-item>
+        <ion-item class="ion-no-padding">
+          <ion-label>
+            <div>Trading Score</div>
+            <ion-note>All time</ion-note>
+          </ion-label>
+          <ion-text slot="end">A+</ion-text>
+        </ion-item>
+        <ion-item class="ion-no-padding">
+          <ion-label>
+            <div>Risk</div>
+            <ion-note>All time</ion-note>
+          </ion-label>
+          <ion-text slot="end">4/10</ion-text>
+        </ion-item>
+        <ion-item class="ion-no-padding" lines="none">
+          <ion-label>
+            <div>Max Drawdown</div>
+            <ion-note>All time</ion-note>
+          </ion-label>
+          <ion-text slot="end">50%</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card>
 
+    <!-- Period Statistics -->
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Performances</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>
+          <ngx-datatable class="material" [rows]="periods" [headerHeight]="30" [footerHeight]="0" [rowHeight]="40"
+            [scrollbarV]="false" [scrollbarH]="true">
+            <ngx-datatable-column name="name" [width]="120" [frozenLeft]="true">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Period</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="tradesDifference" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Trades</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue">{{ value }}</ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="pipsDifference" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Pips</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue" [color]="value>0 ? 'rise' : 'fall'">{{ value |
+                  number:'1.2-2'}}</ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="profitDifference" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>P/L</ion-note>
+              </ng-template>
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue" [color]="value>0 ? 'rise' : 'fall'">{{ value | number:'1.2-2'
+                  }}<span class="unit">$</span></ion-text>
+                <ng-template #novalue>-</ng-template>
+                <!-- <ion-text *ngIf="row['profit']" [color]="value>0 ? 'rise' : 'fall'">
+                  ({{ row['profit'] | number:'1.2-2' }}) <span class="unit">pips</span>
+                </ion-text> -->
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="wonTradesPercentDifference" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Won Rate</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue" [color]="value>0 ? 'rise' : 'fall'">{{ value | number:'1.2-2'
+                  }}<span class="unit">%</span></ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Daily Growth -->
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Daily Growth</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>
+          <ngx-datatable class="material" [rows]="summary?.dailyGrowth" [headerHeight]="30" [footerHeight]="0"
+            [rowHeight]="40" [scrollbarV]="true" [scrollbarH]="true">
+            <ngx-datatable-column name="Date" [width]="120" [frozenLeft]="true">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Date</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value | moment: 'MMM DD, YY' }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="lots" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Lots</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue">{{ value | number:'1.2-2' }}</ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Pips" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Pips</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue" [color]="value>0 ? 'rise' : 'fall'">{{ value | number:'1.2-2'
+                  }}</ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Profit" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>P/L</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue" [color]="value>0 ? 'rise' : 'fall'">{{ value | number:'1.2-2'
+                  }}<span class="unit">$</span></ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="drawdownProfit" [width]="100">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Drawdown</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue">
+                  {{ value | number:'1.2-2' }}<span class="unit">$</span>
+                </ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="totalProfit" [width]="100">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Cum. Profit</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue" [color]="value>0 ? 'rise' : 'fall'">
+                  {{ value | number:'1.2-2' }}<span class="unit">$</span>
+                </ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Monthly Statistics -->
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Monthly Stats</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>
+          <ngx-datatable class="material" [rows]="summary?.monthlyAnalytics" [headerHeight]="30" [footerHeight]="0"
+            [rowHeight]="40" [scrollbarV]="false" [scrollbarH]="true">
+            <ngx-datatable-column name="Date" [width]="120" [frozenLeft]="true">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Date</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value | moment: 'MMM YYYY' }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Trades" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Trades</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Profit" [width]="100">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>P/L</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text [color]="value>0 ? 'rise' : 'fall'">{{ value | number:'1.2-2' }}<span
+                    class="unit">$</span></ion-text>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Pips" [width]="100">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Pips</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text [color]="value>0 ? 'rise' : 'fall'">{{ value | number:'1.2-2' }}</ion-text>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="rewardToRiskRatio" [width]="80">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>RR</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text [color]="value>0 ? 'rise' : 'fall'">{{ value | number:'1.2-2' }}</ion-text>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="averageHoldingTimeLongs" [width]="100">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Aver. Long</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue">
+                  {{ (value / 1000 / 60 / 60) | number:'1.0-0' }}h {{ ((value / 1000 / 60) % 60) | number:'1.0-0' }}m
+                </ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="averageHoldingTimeShorts" [width]="100">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <ion-note>Aver. Shorts</ion-note>
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <ion-text *ngIf="value; else novalue">
+                  {{ (value / 1000 / 60 / 60) | number:'1.0-0' }}h {{ ((value / 1000 / 60) % 60) | number:'1.0-0' }}m
+                </ion-text>
+                <ng-template #novalue>-</ng-template>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-segment-content>
+  <ion-segment-content id="metrics">
     <ion-list>
       <ion-item-divider>
-        <ion-label>Trading Ability <ion-note class="grade" [class]="metrics?.trade.grade.toLowerCase()">{{metrics?.trade.grade}}</ion-note></ion-label>
+        <ion-label>Trading Ability <ion-note class="grade"
+            [class]="metrics?.trade.grade.toLowerCase()">{{metrics?.trade.grade}}</ion-note></ion-label>
+        <!-- <ion-button slot="end" size="small" fill="clear" color="medium">
+          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+        </ion-button> -->
       </ion-item-divider>
 
       <div class="summary ion-margin-bottom">
@@ -53,24 +304,24 @@
         <ion-card class="box ion-margin-horizontal ion-padding">
           <div>
             <small>Trades</small>
-            <ion-card-title>{{metrics?.trade.tradesPerDay | number:'1.2-2'}}<span class="unit">/day</span></ion-card-title>
+            <ion-card-title>{{metrics?.trade.tradesPerDay | number:'1.2-2'}}<span
+                class="unit">/day</span></ion-card-title>
           </div>
           <div>
             <small>Won Trade</small>
-            <ion-card-title>{{metrics?.trade.wonTradesPercent | number:'1.2-2'}}<span class="unit">%</span></ion-card-title>
+            <ion-card-title>{{metrics?.trade.wonTradesPercent | number:'1.2-2'}}<span
+                class="unit">%</span></ion-card-title>
           </div>
           <div>
             <small>Average Trade</small>
             <ion-card-title>{{metrics?.trade.averageTradeLengthInMilliseconds | date:'HH mm'}}</ion-card-title>
           </div>
         </ion-card>
-      </div> 
+      </div>
 
       <ion-item-divider>
-        <ion-label>Return, P/L<ion-note class="grade" [class]="metrics?.return.grade.toLowerCase()">{{metrics?.return.grade}}</ion-note></ion-label>
-        <ion-button slot="end" size="small" fill="clear" color="medium">
-          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
-        </ion-button>
+        <ion-label>Return, P/L<ion-note class="grade"
+            [class]="metrics?.return.grade.toLowerCase()">{{metrics?.return.grade}}</ion-note></ion-label>
       </ion-item-divider>
       <div class="summary ion-margin-bottom">
         <div id="return" class="gauge-chart ion-text-center"></div>
@@ -91,10 +342,8 @@
       </div>
 
       <ion-item-divider>
-        <ion-label>Risk Management <ion-note class="grade" [class]="metrics?.risk.grade.toLowerCase()">{{metrics?.risk.grade}}</ion-note></ion-label>
-        <ion-button slot="end" size="small" fill="clear" color="medium">
-          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
-        </ion-button>
+        <ion-label>Risk Management <ion-note class="grade"
+            [class]="metrics?.risk.grade.toLowerCase()">{{metrics?.risk.grade}}</ion-note></ion-label>
       </ion-item-divider>
       <div class="summary ion-margin-bottom">
         <div id="risk" class="gauge-chart ion-text-center"></div>
@@ -115,21 +364,21 @@
       </div>
 
       <ion-item-divider>
-        <ion-label>Trade Execution <ion-note class="grade" [class]="metrics?.execution.grade.toLowerCase()">{{metrics?.execution.grade}}</ion-note></ion-label>
-        <ion-button slot="end" size="small" fill="clear" color="medium">
-          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
-        </ion-button>
+        <ion-label>Trade Execution <ion-note class="grade"
+            [class]="metrics?.execution.grade.toLowerCase()">{{metrics?.execution.grade}}</ion-note></ion-label>
       </ion-item-divider>
       <div class="summary ion-margin-bottom">
         <div id="execution" class="gauge-chart ion-text-center"></div>
         <ion-card class="box ion-margin-horizontal ion-padding">
           <div>
             <small>Average Win</small>
-            <ion-card-title>{{metrics?.execution?.averageWin | number:'1.2-2'}}<span class="unit">%</span></ion-card-title>
+            <ion-card-title>{{metrics?.execution?.averageWin | number:'1.2-2'}}<span
+                class="unit">%</span></ion-card-title>
           </div>
           <div>
             <small>Average Loss</small>
-            <ion-card-title>{{metrics?.execution?.averageLoss | number:'1.2-2'}}<span class="unit">%</span></ion-card-title>
+            <ion-card-title>{{metrics?.execution?.averageLoss | number:'1.2-2'}}<span
+                class="unit">%</span></ion-card-title>
           </div>
           <div>
             <small>RR Ratio</small>
@@ -139,10 +388,8 @@
       </div>
 
       <ion-item-divider>
-        <ion-label>Diversification and Exposure <ion-note class="grade" [class]="metrics?.diversification.grade.toLowerCase()">{{metrics?.diversification.grade}}</ion-note></ion-label>
-        <ion-button slot="end" size="small" fill="clear" color="medium">
-          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
-        </ion-button>
+        <ion-label>Diversification and Exposure <ion-note class="grade"
+            [class]="metrics?.diversification.grade.toLowerCase()">{{metrics?.diversification.grade}}</ion-note></ion-label>
       </ion-item-divider>
       <div class="summary ion-margin-bottom">
         <div id="exposure" class="gauge-chart ion-text-center"></div>
@@ -275,8 +522,5 @@
         <ion-note slot="end">{{metrics?.zScore}}</ion-note>
       </ion-item> -->
     </ion-list>
-  </ion-segment-content>
-  <ion-segment-content id="stats">
-    abc
   </ion-segment-content>
 </ion-segment-view>

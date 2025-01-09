@@ -4,15 +4,19 @@ import { IonicModule } from '@ionic/angular';
 
 import { DashPage } from './dash';
 import { DashPageRoutingModule } from './dash-routing.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MomentPipe } from '../../pipes/moment.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    DashPageRoutingModule
+    DashPageRoutingModule,
+    NgxDatatableModule
   ],
   declarations: [
-    DashPage
+    DashPage,
+    MomentPipe
   ]
 })
 export class DashModule { }

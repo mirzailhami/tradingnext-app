@@ -1,38 +1,35 @@
-ion-card {
+ion-card, ion-note{
   background: var(--ion-background-color, #fff);
 }
 
-.summary {
-  contain: content;
+#metrics {
+  .summary {
+    contain: content;
 
-  .box {
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0px 8px;
-    border: 1px solid var(--ion-border-color);
+    .box {
+      margin-top: 0px;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0px 8px;
+      border: 1px solid var(--ion-border-color);
 
-    small {
-      color: var(--ion-color-step-650, #5f6368);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-weight: 450;
-    }
+      small {
+        color: var(--ion-color-step-650, #5f6368);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-weight: 450;
+      }
 
-    .unit {
-      color: var(--ion-color-step-650, #5f6368);
-      font-size: 60%;
-      font-weight: 200;
-    }
+      > div {
+        padding: 8px;
+      }
 
-    > div {
-      padding: 8px;
-    }
-
-    ion-card-title {
-      font-weight: bold;
-      margin-top: 5px;
+      ion-card-title {
+        font-weight: bold;
+        margin-top: 5px;
+      }
     }
   }
 }
@@ -44,6 +41,12 @@ ion-card {
   border-radius: 2px;
   letter-spacing: 0.5px;
   margin-left: 5px;
+}
+
+.unit {
+  color: var(--ion-color-step-650, #5f6368);
+  font-size: 60%;
+  font-weight: 200;
 }
 
 .bad {
